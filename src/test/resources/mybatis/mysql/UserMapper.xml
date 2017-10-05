@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.insearch.dao">
+	<!-- <cache type="org.mybatis.caches.redis.RedisCache" /> -->
+
+	<select id="selectUser" parameterType="String" resultType="User">
+		select * from tb_users where uuid = #{uuid}
+	</select>
+
+	<insert id="insertUser" parameterType="String">
+		insert into tb_users
+		(uuid)
+		values
+		(#{uuid})
+	</insert>
+
+	<delete id="deleteUser" parameterType="String">
+		delete from tb_users where
+		uuid = #{uuid}
+	</delete>
+
+	<update id="updateUser" parameterType="User">
+		update tb_users
+		<if test="gender != null and birthyear != null">
+			set birthyear = #{birthyear}, gender = #{gender}
+		</if>
+		<if test="gender == null or birthyear == null">
+			set language = #{language}
+		</if>
+		where uuid = #{uuid}
+	</update>
+
+	<select id="existUser" parameterType="String" resultType="boolean">
+		select
+		count(*) from tb_users where uuid = #{uuid}
+	</select>
+
+</mapper>

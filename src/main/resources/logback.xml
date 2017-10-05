@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.padual.com/java/logback.xsd">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%d{yyyy/MM/dd HH:mm:ss.SSS}][%thread][%-5level][%logger{0}] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss" /> -->
+	<!-- <appender name="FILE" class="ch.qos.logback.core.FileAppender"> -->
+	<!-- <file>log-${bySecond}.txt</file> -->
+	<!-- <append>true</append> -->
+	<!-- <encoder> -->
+	<!-- <pattern>[%d{yyyy/MM/dd HH:mm:ss.SSS}][%thread][%-5level][%logger{0}] 
+		%msg%n</pattern> -->
+	<!-- </encoder> -->
+	<!-- </appender> -->
+	<appender name="ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>log.txt</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>insearch-%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy/MM/dd HH:mm:ss.SSS}][%thread][%-5level][%logger{0}] %msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="org.springframework" level="INFO" />
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ROLLING" />
+	</root>
+	<logger name="com.insearch" level="INFO" />
+	<logger name="java.sql" level="error" />
+	<logger name="jdbc.sqlonly" level="INFO" />
+	<logger name="jdbc.sqltiming" level="OFF" />
+	<logger name="jdbc.audit" level="OFF" />
+	<logger name="jdbc.resultset" level="OFF" />
+	<logger name="org.quartz.core" level="INFO"/>
+</configuration>

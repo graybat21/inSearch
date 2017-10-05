@@ -1,0 +1,134 @@
+[2017/10/06 00:25:25.351][RMI TCP Connection(2)-127.0.0.1][INFO ][SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin] Application shutdown requested.
+[2017/10/06 00:25:25.359][RMI TCP Connection(2)-127.0.0.1][INFO ][AnnotationConfigEmbeddedWebApplicationContext] Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@9225652: startup date [Thu Oct 05 23:45:29 KST 2017]; root of context hierarchy
+[2017/10/06 00:25:25.395][RMI TCP Connection(2)-127.0.0.1][INFO ][DefaultLifecycleProcessor] Stopping beans in phase 2147483647
+[2017/10/06 00:25:25.402][RMI TCP Connection(2)-127.0.0.1][INFO ][AnnotationMBeanExporter] Unregistering JMX-exposed beans on shutdown
+[2017/10/06 00:25:29.375][main][INFO ][SpringBootTestContextBootstrapper] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.insearch.InsearchApplicationTests], using SpringBootContextLoader
+[2017/10/06 00:25:29.384][main][INFO ][AbstractContextLoader] Could not detect default resource locations for test class [com.insearch.InsearchApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+[2017/10/06 00:25:29.453][main][INFO ][SpringBootTestContextBootstrapper] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener]
+[2017/10/06 00:25:29.481][main][INFO ][SpringBootTestContextBootstrapper] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@69504ae9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@387a8303, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@28cda624, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1500b2f3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7eecb5b8, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@126253fd, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@57db2b13, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@475c9c31, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5c86a017, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5c7bfdc1, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5276d6ee, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@71687585, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1807f5a7]
+[2017/10/06 00:25:29.827][main][INFO ][InsearchApplicationTests] Starting InsearchApplicationTests on DESKTOP-PUM53R6 with PID 12652 (started by grayb in C:\Java\workspace-sb\insearch)
+[2017/10/06 00:25:29.828][main][INFO ][InsearchApplicationTests] No active profile set, falling back to default profiles: default
+[2017/10/06 00:25:29.843][main][INFO ][AnnotationConfigEmbeddedWebApplicationContext] Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3b00856b: startup date [Fri Oct 06 00:25:29 KST 2017]; root of context hierarchy
+[2017/10/06 00:25:30.137][background-preinit][INFO ][Version] HV000001: Hibernate Validator 5.3.5.Final
+[2017/10/06 00:25:30.922][main][WARN ][ClassPathMapperScanner] No MyBatis mapper was found in '[com.insearch]' package. Please check your configuration.
+[2017/10/06 00:25:31.069][main][WARN ][ClassPathMapperScanner] No MyBatis mapper was found in '[com.insearch]' package. Please check your configuration.
+[2017/10/06 00:25:31.537][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$44a3c25e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/06 00:25:31.560][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$dd518a98] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/06 00:25:31.583][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/06 00:25:31.584][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4f5b08d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/06 00:25:31.595][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$2262d4a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/06 00:25:31.608][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/06 00:25:32.476][main][INFO ][TomcatEmbeddedServletContainer] Tomcat initialized with port(s): 0 (http)
+[2017/10/06 00:25:32.494][main][INFO ][StandardService] Starting service [Tomcat]
+[2017/10/06 00:25:32.500][main][INFO ][StandardEngine] Starting Servlet Engine: Apache Tomcat/8.5.20
+[2017/10/06 00:25:32.640][localhost-startStop-1][INFO ][[/]] Initializing Spring embedded WebApplicationContext
+[2017/10/06 00:25:32.644][localhost-startStop-1][INFO ][ContextLoader] Root WebApplicationContext: initialization completed in 2802 ms
+[2017/10/06 00:25:32.960][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'simpleCorsFilter' to: [/*]
+[2017/10/06 00:25:32.960][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'characterEncodingFilter' to: [/*]
+[2017/10/06 00:25:32.960][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[2017/10/06 00:25:32.965][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[2017/10/06 00:25:32.965][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'requestContextFilter' to: [/*]
+[2017/10/06 00:25:32.966][localhost-startStop-1][INFO ][DelegatingFilterProxyRegistrationBean] Mapping filter: 'springSecurityFilterChain' to: [/*]
+[2017/10/06 00:25:32.967][localhost-startStop-1][INFO ][ServletRegistrationBean] Mapping servlet: 'dispatcherServlet' to [/]
+[2017/10/06 00:25:33.981][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger],methods=[GET]}" onto public java.lang.String com.insearch.controller.HomeController.swaggerui()
+[2017/10/06 00:25:33.988][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/users],methods=[GET]}" onto public void com.insearch.controller.UserController.readUsers(javax.servlet.http.HttpServletResponse)
+[2017/10/06 00:25:33.993][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+[2017/10/06 00:25:33.995][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+[2017/10/06 00:25:34.000][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+[2017/10/06 00:25:34.001][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+[2017/10/06 00:25:34.004][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[2017/10/06 00:25:34.005][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2017/10/06 00:25:34.846][main][INFO ][AuthenticationManagerConfiguration] 
+
+Using default security password: fd41666f-20dc-4d27-9674-c4610983db1d
+
+[2017/10/06 00:25:34.917][main][INFO ][DefaultSecurityFilterChain] Creating filter chain: Ant [pattern='/**'], []
+[2017/10/06 00:25:35.041][main][INFO ][DefaultSecurityFilterChain] Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d9f5fce, org.springframework.security.web.context.SecurityContextPersistenceFilter@3ca17943, org.springframework.security.web.header.HeaderWriterFilter@27df5806, org.springframework.security.web.csrf.CsrfFilter@2035d65b, org.springframework.security.web.authentication.logout.LogoutFilter@65859b44, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5170bc02, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e120628, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49653791, org.springframework.security.web.session.SessionManagementFilter@7308c820, org.springframework.security.web.access.ExceptionTranslationFilter@59d6642a]
+[2017/10/06 00:25:35.242][main][INFO ][RequestMappingHandlerAdapter] Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3b00856b: startup date [Fri Oct 06 00:25:29 KST 2017]; root of context hierarchy
+[2017/10/06 00:25:35.391][main][INFO ][SimpleUrlHandlerMapping] Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2017/10/06 00:25:35.391][main][INFO ][SimpleUrlHandlerMapping] Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2017/10/06 00:25:35.488][main][INFO ][SimpleUrlHandlerMapping] Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2017/10/06 00:25:36.193][main][INFO ][DefaultLifecycleProcessor] Starting beans in phase 2147483647
+[2017/10/06 00:25:36.202][main][INFO ][DocumentationPluginsBootstrapper] Context refreshed
+[2017/10/06 00:25:36.227][main][INFO ][DocumentationPluginsBootstrapper] Found 1 custom documentation plugin(s)
+[2017/10/06 00:25:36.245][main][INFO ][ApiListingReferenceScanner] Scanning for api listing references
+[2017/10/06 00:25:36.567][main][INFO ][Http11NioProtocol] Initializing ProtocolHandler ["http-nio-auto-1"]
+[2017/10/06 00:25:36.587][main][INFO ][Http11NioProtocol] Starting ProtocolHandler ["http-nio-auto-1"]
+[2017/10/06 00:25:36.597][main][INFO ][NioSelectorPool] Using a shared selector for servlet write/read
+[2017/10/06 00:25:36.619][main][INFO ][TomcatEmbeddedServletContainer] Tomcat started on port(s): 1839 (http)
+[2017/10/06 00:25:36.625][main][INFO ][InsearchApplicationTests] Started InsearchApplicationTests in 7.059 seconds (JVM running for 7.916)
+[2017/10/06 00:25:40.975][main][ERROR][ConnectionPool] Unable to create initial connections of pool.
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:918)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:897)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:886)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:860)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2097)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2022)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:779)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:389)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at net.sf.log4jdbc.DriverSpy.connect(DriverSpy.java:728)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:310)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:203)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:735)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:667)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:482)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:154)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+	at com.insearch.InsearchApplicationTests.testConection(InsearchApplicationTests.java:35)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: java.sql.SQLException: Access denied for user 'insearch'@'175.198.213.17' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2191)
+	at com.mysql.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:2038)
+	... 50 common frames omitted
+[2017/10/06 00:25:40.990][Thread-4][INFO ][AnnotationConfigEmbeddedWebApplicationContext] Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3b00856b: startup date [Fri Oct 06 00:25:29 KST 2017]; root of context hierarchy
+[2017/10/06 00:25:40.997][Thread-4][INFO ][DefaultLifecycleProcessor] Stopping beans in phase 2147483647
