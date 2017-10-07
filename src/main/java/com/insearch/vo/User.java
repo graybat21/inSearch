@@ -13,6 +13,9 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonProperty("no")
+	@Setter @Getter
+	private Long no;
 	@JsonProperty("id")
 	@Setter @Getter
 	private String id;
@@ -31,6 +34,5 @@ public class User implements Serializable {
 	@JsonProperty("emailflag")
 	@Setter @Getter
 	private Integer emailflag;
-	
 	
 }
