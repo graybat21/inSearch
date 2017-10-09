@@ -1,7 +1,8 @@
-package com.insearch.controller;
+//package com.insearch.controller;
 //
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertNotNull;
+//import static org.junit.Assert.assertNull;
 //
 //import java.net.URI;
 //import java.util.Locale;
@@ -27,27 +28,23 @@ package com.insearch.controller;
 //import org.springframework.test.context.junit4.SpringRunner;
 //import org.springframework.transaction.annotation.EnableTransactionManagement;
 //
+//import com.insearch.InsearchApplication;
+//import com.insearch.service.UserService;
 //import com.jayway.jsonpath.JsonPath;
 //
-//import kr.co.chorocksoft.ehwa.rainbird.backend.Application;
 //import kr.co.chorocksoft.ehwa.rainbird.backend.common.CrError;
-//import kr.co.chorocksoft.ehwa.rainbird.backend.restful.user.UserService;
-//import kr.co.chorocksoft.ehwa.rainbird.backend.restful.vo.MyRisk;
-//import kr.co.chorocksoft.ehwa.rainbird.backend.restful.vo.Risk;
+//import kr.co.chorocksoft.ehwa.rainbird.backend.restful.vo.User;
 //import lombok.extern.slf4j.Slf4j;
 //
 //@Slf4j
 //@RunWith(SpringRunner.class)
-//@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest(classes = InsearchApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@EnableAutoConfiguration(exclude = { DataSourceTransactionManagerAutoConfiguration.class,
 //		DataSourceAutoConfiguration.class })
 //@TestConfiguration
 //@EnableTransactionManagement(proxyTargetClass = true)
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 //public class UserControllerTests {
-//
-//	@Autowired
-//	private MessageSource messageSource;
 //
 //	@Autowired
 //	private TestRestTemplate restTemplate;
@@ -57,55 +54,80 @@ package com.insearch.controller;
 //
 //	@Test
 //	@Rollback
-//	public void test01MyRiskContollerTest() throws Exception {
+//	public void test01UserCRUDTest() throws Exception {
 //
-//		// createMyRisk 테스트
-//		// 먼저 외래키로 묶여있는 user, risk 를 하나씩 만든다
-//		ResponseEntity<String> entity = this.restTemplate.exchange(RequestEntity.post(uri("/users")).build(),
-//				String.class);
+//		// createUser 테스트
+//		RequestEntity<Void> requestVoid = RequestEntity.post(uri("/users")).accept(MediaType.APPLICATION_JSON)
+//				.header(HttpHeaders.ACCEPT_LANGUAGE, "en").build();
+//		ResponseEntity<String> entity = this.restTemplate.exchange(requestVoid, String.class);
 //		log.info(JsonPath.read(entity.getBody(), "$.body.result"));
 //		String uuid = JsonPath.read(entity.getBody(), "$.body.result");
 //		assertNotNull(uuid);
 //		assertEquals(HttpStatus.OK, entity.getStatusCode());
 //
-//		Risk risk = new Risk();
-//		risk.setLat("90.55555555");
-//		risk.setLng("361.99999999");
-//		risk.setRiskcode(5);
-//		risk.setUserUuid(uuid);
-//		riskService.insertRisk(risk);
-//		log.info(risk.getIdx().toString());
-//		int idx = risk.getIdx();
+//		// modifyUser 테스트 - language만 변경 - 개인정보 수집화면
+//		User user = new User();
+//		user.setLanguage("ko");
+//		user.setUuid(uuid);
+//		log.info(user.toString());
+//		RequestEntity<User> userRequest = RequestEntity.put(uri("/users")).accept(MediaType.APPLICATION_JSON)
+//				.body(user);
+//		entity = this.restTemplate.exchange(userRequest, String.class);
+//		assertEquals(HttpStatus.OK, entity.getStatusCode());
+//		// 실제 불러와서 확인
+//		// readUser 테스트 - uuid, language만 확인
+//		requestVoid = RequestEntity.get(uri("/users?uuid=" + uuid)).build();
+//		entity = this.restTemplate.exchange(requestVoid, String.class);
+//		assertEquals(uuid, JsonPath.read(entity.getBody(), "$.body.result.uuid"));
+//		assertEquals("ko", JsonPath.read(entity.getBody(), "$.body.result.language"));
+//		assertNull(JsonPath.read(entity.getBody(), "$.body.result.gender"));
+//		assertNull(JsonPath.read(entity.getBody(), "$.body.result.birthyear"));
 //
-//		// 주어진 uuid, idx 를 이용해서 myrisk 에 입력한다.
-//		MyRisk myrisk = new MyRisk();
-//		myrisk.setRiskIdx(idx);
-//		myrisk.setUserUuid(uuid);
-//		RequestEntity<MyRisk> req1 = RequestEntity.post(uri("/myrisk")).accept(MediaType.APPLICATION_JSON).body(myrisk);
-//		entity = this.restTemplate.exchange(req1, String.class);
-//		log.info(JsonPath.read(entity.getBody(), "$.header.message"));
-//		assertEquals("success", JsonPath.read(entity.getBody(), "$.header.message"));
-//		
-//		// createMyRisk 테스트2 - 같은 데이터 중복입력시
-//		RequestEntity<MyRisk> req2 = RequestEntity.post(uri("/myrisk")).accept(MediaType.APPLICATION_JSON).header(HttpHeaders.ACCEPT_LANGUAGE, "en").body(myrisk);
-//		entity = this.restTemplate.exchange(req2, String.class);
-//		log.info(JsonPath.read(entity.getBody(), "$.header.message"));
-//		String message1 = messageSource.getMessage(CrError.ERROR_UNKNOWN.name(), null, Locale.ENGLISH);
-//		assertEquals(message1, JsonPath.read(entity.getBody(), "$.header.message"));
-//		
-//		// createMyRisk 테스트3 - idx, uuid 가 null 일 경우
-//		MyRisk myrisk3 = new MyRisk();
-//		myrisk3.setRiskIdx(idx);
-//		RequestEntity<MyRisk> req3 = RequestEntity.post(uri("/myrisk")).accept(MediaType.APPLICATION_JSON).header(HttpHeaders.ACCEPT_LANGUAGE, "km").body(myrisk3);
-//		entity = this.restTemplate.exchange(req3, String.class);
-//		log.info(JsonPath.read(entity.getBody(), "$.header.message"));
-//		String message2 = messageSource.getMessage(CrError.ERROR_PARAM.name(), null, Locale.forLanguageTag("km"));
-//		assertEquals(message2, JsonPath.read(entity.getBody(), "$.header.message"));
-//		
+//		// modifyUser 테스트2 - 성, 나이 변경 - 개인정보 수집화면
+//		User user2 = new User();
+//		String birthyear = "1999";
+//		user2.setBirthyear(birthyear);
+//		user2.setGender(1);
+//		user2.setUuid(uuid);
+//		log.info(user2.toString());
+//		RequestEntity<User> userRequest2 = RequestEntity.put(uri("/users")).accept(MediaType.APPLICATION_JSON)
+//				.body(user2);
+//		entity = this.restTemplate.exchange(userRequest2, String.class);
+//		assertEquals(HttpStatus.OK, entity.getStatusCode());
+//		// 실제 불러와서 확인 - uuid, gender, birthyear만 확인
+//		requestVoid = RequestEntity.get(uri("/users?uuid=" + uuid)).build();
+//		entity = this.restTemplate.exchange(requestVoid, String.class);
+//		assertEquals(uuid, JsonPath.read(entity.getBody(), "$.body.result.uuid"));
+//		assertEquals((Integer) 1, JsonPath.read(entity.getBody(), "$.body.result.gender"));
+//		assertEquals(birthyear, JsonPath.read(entity.getBody(), "$.body.result.birthyear"));
+//
+//		// readUser 언어별 에러메시지 테스트
+//		String errorCode = CrError.ERROR_NO_DATA.name();
+//
+//		requestVoid = RequestEntity.get(uri("/users?uuid=aodfigh")).accept(MediaType.APPLICATION_JSON)
+//				.header(HttpHeaders.ACCEPT_LANGUAGE, "en").build();
+//		entity = this.restTemplate.exchange(requestVoid, String.class);
+//		log.info(JsonPath.read(entity.getBody(), "$.header.message").toString());
+//		String message = messageSource.getMessage(errorCode, null, Locale.ENGLISH);
+//		assertEquals(message, JsonPath.read(entity.getBody(), "$.header.message"));
+//
+//		requestVoid = RequestEntity.get(uri("/users?uuid=aodfigh")).accept(MediaType.APPLICATION_JSON)
+//				.header(HttpHeaders.ACCEPT_LANGUAGE, "ko").build();
+//		entity = this.restTemplate.exchange(requestVoid, String.class);
+//		log.info(JsonPath.read(entity.getBody(), "$.header.message").toString());
+//		message = messageSource.getMessage(errorCode, null, Locale.KOREAN);
+//		assertEquals(message, JsonPath.read(entity.getBody(), "$.header.message"));
+//
+//		requestVoid = RequestEntity.get(uri("/users?uuid=aodfigh")).accept(MediaType.APPLICATION_JSON)
+//				.header(HttpHeaders.ACCEPT_LANGUAGE, "km").build();
+//		entity = this.restTemplate.exchange(requestVoid, String.class);
+//		log.info(JsonPath.read(entity.getBody(), "$.header.message").toString());
+//		message = messageSource.getMessage(errorCode, null, new Locale("km", "kh"));
+//		assertEquals(message, JsonPath.read(entity.getBody(), "$.header.message"));
+//
 //	}
 //
 //	private URI uri(String path) {
 //		return restTemplate.getRestTemplate().getUriTemplateHandler().expand(path);
 //	}
-//
 //}

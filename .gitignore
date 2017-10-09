@@ -8,6 +8,8 @@ target/
 .project
 .settings
 .springBeans
+Log.txt
+*.gz
 
 ### IntelliJ IDEA ###
 .idea

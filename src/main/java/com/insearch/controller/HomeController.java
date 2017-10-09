@@ -18,14 +18,13 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@RequestMapping(value="/swagger", method = RequestMethod.GET)
-	public String swaggerui(){
+	@GetMapping("/swagger")
+	public String swaggerui() {
 		return "redirect:/swagger-ui.html";
 	}
 
-	@RequestMapping("/aaa")
-	@GetMapping
-	public String test(){
+	@GetMapping("/")
+	public String test() {
 		return "index";
 	}
 }

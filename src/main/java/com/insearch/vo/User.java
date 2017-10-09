@@ -15,24 +15,24 @@ public class User implements Serializable {
 
 	@JsonProperty("no")
 	@Setter @Getter
-	private Long no;
+	public Integer no;
 	@JsonProperty("id")
 	@Setter @Getter
-	private String id;
+	public String id;
 	@JsonProperty("pw")
 	@Setter @Getter
-	private String pw;
+	public String pw;
 	@JsonProperty("email")
 	@Setter @Getter
-	private String email;
+	public String email;
 	@JsonProperty("agerange")
 	@Setter @Getter
-	private Integer agerange;
+	public int agerange;
 	@JsonProperty("gender")
 	@Setter @Getter
-	private Integer gender;
+	public int gender;
 	@JsonProperty("emailflag")
 	@Setter @Getter
-	private Integer emailflag;
+	public int emailflag;
 	
 }

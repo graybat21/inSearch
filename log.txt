@@ -229,3 +229,60 @@ Using default security password: 95f65869-64e9-41fd-bb32-a24a2e97ee61
 [2017/10/07 15:49:09.851][http-nio-8080-exec-2][INFO ][[/]] Initializing Spring FrameworkServlet 'dispatcherServlet'
 [2017/10/07 15:49:09.855][http-nio-8080-exec-2][INFO ][DispatcherServlet] FrameworkServlet 'dispatcherServlet': initialization started
 [2017/10/07 15:49:09.882][http-nio-8080-exec-2][INFO ][DispatcherServlet] FrameworkServlet 'dispatcherServlet': initialization completed in 27 ms
+[2017/10/09 19:57:53.824][main][INFO ][InsearchApplication] Starting InsearchApplication on DESKTOP-A933GT2 with PID 8516 (D:\Project\spring\inSearch\target\classes started by doctorf in D:\Project\spring\inSearch)
+[2017/10/09 19:57:53.828][main][INFO ][InsearchApplication] No active profile set, falling back to default profiles: default
+[2017/10/09 19:57:53.867][main][INFO ][AnnotationConfigEmbeddedWebApplicationContext] Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4b34fff9: startup date [Mon Oct 09 19:57:53 KST 2017]; root of context hierarchy
+[2017/10/09 19:57:53.961][background-preinit][INFO ][Version] HV000001: Hibernate Validator 5.3.5.Final
+[2017/10/09 19:57:54.445][main][WARN ][ClassPathMapperScanner] No MyBatis mapper was found in '[com.insearch]' package. Please check your configuration.
+[2017/10/09 19:57:54.542][main][WARN ][ClassPathMapperScanner] No MyBatis mapper was found in '[com.insearch]' package. Please check your configuration.
+[2017/10/09 19:57:54.851][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9c8576cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/09 19:57:54.866][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$35333f09] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/09 19:57:54.879][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/09 19:57:54.881][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3374b5bc' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/09 19:57:54.888][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$5a07e1bb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/09 19:57:54.896][main][INFO ][PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2017/10/09 19:57:55.255][main][INFO ][TomcatEmbeddedServletContainer] Tomcat initialized with port(s): 8080 (http)
+[2017/10/09 19:57:55.263][main][INFO ][StandardService] Starting service [Tomcat]
+[2017/10/09 19:57:55.264][main][INFO ][StandardEngine] Starting Servlet Engine: Apache Tomcat/8.5.20
+[2017/10/09 19:57:55.454][localhost-startStop-1][INFO ][TldScanner] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+[2017/10/09 19:57:55.458][localhost-startStop-1][INFO ][[/]] Initializing Spring embedded WebApplicationContext
+[2017/10/09 19:57:55.459][localhost-startStop-1][INFO ][ContextLoader] Root WebApplicationContext: initialization completed in 1592 ms
+[2017/10/09 19:57:55.765][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'simpleCorsFilter' to: [/*]
+[2017/10/09 19:57:55.765][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'characterEncodingFilter' to: [/*]
+[2017/10/09 19:57:55.765][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[2017/10/09 19:57:55.766][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[2017/10/09 19:57:55.766][localhost-startStop-1][INFO ][FilterRegistrationBean] Mapping filter: 'requestContextFilter' to: [/*]
+[2017/10/09 19:57:55.766][localhost-startStop-1][INFO ][DelegatingFilterProxyRegistrationBean] Mapping filter: 'springSecurityFilterChain' to: [/*]
+[2017/10/09 19:57:55.767][localhost-startStop-1][INFO ][ServletRegistrationBean] Mapping servlet: 'dispatcherServlet' to [/]
+[2017/10/09 19:57:56.286][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/aaa]}" onto public java.lang.String com.insearch.controller.HomeController.test()
+[2017/10/09 19:57:56.286][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger],methods=[GET]}" onto public java.lang.String com.insearch.controller.HomeController.swaggerui()
+[2017/10/09 19:57:56.289][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/users],methods=[GET]}" onto public void com.insearch.controller.UserController.readUsers(javax.servlet.http.HttpServletResponse)
+[2017/10/09 19:57:56.290][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+[2017/10/09 19:57:56.293][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+[2017/10/09 19:57:56.294][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+[2017/10/09 19:57:56.295][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+[2017/10/09 19:57:56.298][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[2017/10/09 19:57:56.298][main][INFO ][RequestMappingHandlerMapping] Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2017/10/09 19:57:56.752][main][INFO ][AuthenticationManagerConfiguration] 
+
+Using default security password: 8b7ef0a0-50f9-4497-bdd8-2cf259787296
+
+[2017/10/09 19:57:56.801][main][INFO ][DefaultSecurityFilterChain] Creating filter chain: Ant [pattern='/**'], []
+[2017/10/09 19:57:56.881][main][INFO ][DefaultSecurityFilterChain] Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2faa55bb, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e599100, org.springframework.security.web.header.HeaderWriterFilter@273fa9e, org.springframework.security.web.csrf.CsrfFilter@525647f3, org.springframework.security.web.authentication.logout.LogoutFilter@2dff7085, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@361cd35c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13250132, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@501957bf, org.springframework.security.web.session.SessionManagementFilter@8fcc534, org.springframework.security.web.access.ExceptionTranslationFilter@626b639e]
+[2017/10/09 19:57:57.214][main][INFO ][RequestMappingHandlerAdapter] Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4b34fff9: startup date [Mon Oct 09 19:57:53 KST 2017]; root of context hierarchy
+[2017/10/09 19:57:57.339][main][INFO ][SimpleUrlHandlerMapping] Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2017/10/09 19:57:57.339][main][INFO ][SimpleUrlHandlerMapping] Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2017/10/09 19:57:57.424][main][INFO ][SimpleUrlHandlerMapping] Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2017/10/09 19:57:57.938][main][INFO ][AnnotationMBeanExporter] Registering beans for JMX exposure on startup
+[2017/10/09 19:57:57.947][main][INFO ][DefaultLifecycleProcessor] Starting beans in phase 2147483647
+[2017/10/09 19:57:57.948][main][INFO ][DocumentationPluginsBootstrapper] Context refreshed
+[2017/10/09 19:57:57.960][main][INFO ][DocumentationPluginsBootstrapper] Found 1 custom documentation plugin(s)
+[2017/10/09 19:57:57.979][main][INFO ][ApiListingReferenceScanner] Scanning for api listing references
+[2017/10/09 19:57:58.317][main][INFO ][Http11NioProtocol] Initializing ProtocolHandler ["http-nio-8080"]
+[2017/10/09 19:57:58.325][main][INFO ][Http11NioProtocol] Starting ProtocolHandler ["http-nio-8080"]
+[2017/10/09 19:57:58.335][main][INFO ][NioSelectorPool] Using a shared selector for servlet write/read
+[2017/10/09 19:57:58.357][main][INFO ][TomcatEmbeddedServletContainer] Tomcat started on port(s): 8080 (http)
+[2017/10/09 19:57:58.362][main][INFO ][InsearchApplication] Started InsearchApplication in 4.714 seconds (JVM running for 5.598)
+[2017/10/09 19:58:17.178][http-nio-8080-exec-1][INFO ][[/]] Initializing Spring FrameworkServlet 'dispatcherServlet'
+[2017/10/09 19:58:17.179][http-nio-8080-exec-1][INFO ][DispatcherServlet] FrameworkServlet 'dispatcherServlet': initialization started
+[2017/10/09 19:58:17.199][http-nio-8080-exec-1][INFO ][DispatcherServlet] FrameworkServlet 'dispatcherServlet': initialization completed in 20 ms

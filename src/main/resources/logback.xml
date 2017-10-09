@@ -20,16 +20,16 @@
 	<appender name="ROLLING"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>log.txt</file>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
+		<!-- <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			rollover daily
 			<fileNamePattern>insearch-%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<!-- or whenever the file size reaches 100MB -->
+				or whenever the file size reaches 100MB
 				<maxFileSize>10MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
 			<maxHistory>30</maxHistory>
-		</rollingPolicy>
+		</rollingPolicy> -->
 		<encoder>
 			<pattern>[%d{yyyy/MM/dd HH:mm:ss.SSS}][%thread][%-5level][%logger{0}] %msg%n</pattern>
 		</encoder>
