@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8" />
 <title><tiles:getAsString name="title" /></title>
+<link rel="stylesheet" type="text/css" href="css/instyle_css.css">
 <style>
 #content {
 	min-height: 1000px
