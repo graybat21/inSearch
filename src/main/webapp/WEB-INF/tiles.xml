@@ -33,4 +33,7 @@
 	<definition name="login/logoutAdmin" template="/WEB-INF/views/admin/logoutAdmin.jsp">
         <put-attribute name="content" value=""/>  
     </definition>
+	<definition name="*" >
+    </definition>
+    
 </tiles-definitions>

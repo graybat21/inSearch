@@ -86,7 +86,13 @@
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors-->
-
+	
+	<!-- json -->
+	<beans:bean id="jsonMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+	<beans:bean id="Json" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+	 	<beans:property name="objectMapper" ref="jsonMapper" />
+	</beans:bean>
+	
 	<context:component-scan base-package="com.insearch" />
 
 	<beans:bean id="swagger2Config"

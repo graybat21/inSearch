@@ -12,7 +12,7 @@
 		<h1>Insearch</h1>
 		<div class="tab-content">
 			<div id="login">
-				<form action="login.do" method="post" name="login">
+				<form action="login" method="post" name="login">
 					<div class="field-wrap">
 						<label> Email Address<span class="req">*</span>
 						</label> <input type="email" required autocomplete="off" name="email" />
@@ -38,12 +38,12 @@
 			</div>
 
 			<div id="signup">
-				<form name="sign_up" action="join.do" method="post">
+				<form name="sign_up" action="join" method="post">
 
 					<div class="top-row">
 						<div class="field-wrap">
 							<label> Email Address<span class="req">*</span>
-							</label> <input type="email" required autocomplete="off" name="email2"/>
+							</label> <input type="email" required autocomplete="off" name="email"/>
 						</div>
 						<div class="field-wrap">
 							<label> Set A Password<span class="req">*</span>
@@ -114,11 +114,11 @@ function emailCheck(){
 		if(gender==0)alert("성별을 선택해주세요");
 		else if(age==0)alert("연령대를 선택해주세요");
 	}else{	
-		var email_check=document.sign_up.email1.value;		
+		var email_check=document.sign_up.email.value;		
 		var params="email="+email_check;	
 		$.ajax({						
 			type : "GET",
-			url : "emailCheck.do",
+			url : "emailCheck",
 			data : params, 
 			error:function (e){
 				alert(e.responseText);
@@ -137,7 +137,7 @@ function login_email(){
 	var param= $("form[name=login]").serialize();	
 	$.ajax({						
 		type : "post",
-		url : "login.do",
+		url : "login",
 		data : param,		
 		error:function (e){
 			alert(e.responseText);

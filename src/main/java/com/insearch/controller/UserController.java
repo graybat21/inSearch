@@ -1,19 +1,35 @@
 package com.insearch.controller;
 
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.insearch.config.MailSend;
+import com.insearch.dao.userDAO;
+import com.insearch.vo.UserVO;
+
 
 @Controller
 public class UserController {
-	
-/*	@Autowired
-	private UserService userService;*/
 
+	@Autowired
+	private userDAO userService;
+
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+	public ModelAndView checkDB(){
+		ModelAndView mav = new ModelAndView();
+		UserVO userVO= userService.selectList();
+		mav.addObject(userVO);
+		mav.setViewName("user/check/check");
+		System.out.println(userVO.toString());
+		return mav;
+	}
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView index(){
 		System.out.println("인덱스 들어옴");
@@ -46,31 +62,32 @@ public class UserController {
 //		return mav;
 //	}
 //	
-//	@RequestMapping("/join.do")
-//	public ModelAndView join(UserVO userdto){
-//		System.out.println(userdto.getEmail()+" // "+userdto.getPwd()+" // "+userdto.getGender()+" // "+userdto.getAgerange());
-//		ModelAndView mav = new ModelAndView();
-//		
-//		int emailflag = (int)(Math.random()*9999+1000);		
-//		userdto.setEmailflag(emailflag);
-//		
-//		int joinCheck=userDao.join(userdto);	
-//		mailSend.send_Email(userdto.getEmail(),emailflag);
-//		mav.setViewName("emailready");				
-//		return mav;
-//	}
+	@RequestMapping(value="/join", method=RequestMethod.POST)
+	public ModelAndView join(UserVO userdto){
+		System.out.println(userdto.getEmail()+" // "+userdto.getPw()+" // "+userdto.getGender()+" // "+userdto.getAgerange());
+		ModelAndView mav = new ModelAndView();
+		
+		int emailflag = (int)(Math.random()*8999+1000);		
+		userdto.setEmailflag(emailflag);
+		
+		int joinCheck=userService.join(userdto);	
+		System.out.println("joincheck"+joinCheck);
+		MailSend.send_Email(userdto.getEmail(),emailflag);
+		mav.setViewName("user/emailready/emailready");				
+		return mav;
+	}
 //	
-//	@RequestMapping("/emailCheck.do")
-//	public ModelAndView emailcheck(String email){
-//		ModelAndView mav = new ModelAndView();
-//		System.out.println("이메일 체크 들어옴 ");
-//		int emailCheck=userDao.emailCheck(email);		
-//		if(emailCheck>0){
-//			mav.addObject("msg","이미 가입되어있는 이메일 입니다.");			
-//		}
-//		mav.setViewName("Json");
-//		return mav;
-//	}
+	@RequestMapping("/emailCheck")
+	public ModelAndView emailcheck(String email){
+		ModelAndView mav = new ModelAndView();
+		System.out.println("이메일 체크 들어옴 ");
+		int emailCheck=userService.emailCheck(email);		
+		if(emailCheck>0){
+			mav.addObject("msg","이미 가입되어있는 이메일 입니다.");			
+		}
+		mav.setViewName("Json");
+		return mav;
+	}
 //	
 //	@RequestMapping("/emailAccept.do")
 //	public ModelAndView emailAccept(UserVO userdto){
