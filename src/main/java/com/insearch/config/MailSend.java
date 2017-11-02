@@ -13,7 +13,7 @@ import javax.mail.internet.MimeUtility;
 
 public class MailSend {
 	
-	public static void send_Email(String email,int emailflag){
+	public static void send_Email(String email,String emailflag){
 		String host = "smtp.gmail.com";
 		String subject = "Insearch 메일인증";
 		String fromName = "Insearch";

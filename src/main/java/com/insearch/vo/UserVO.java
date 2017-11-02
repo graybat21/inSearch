@@ -4,11 +4,20 @@ import java.sql.Date;
 
 public class UserVO {
 	private int no;
+	private String id;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	private String email;
 	private String pw;
 	private int gender;
 	private int agerange;
-	private int emailflag;
+	private String emailflag;
 	private Date createdate;
 	private Date lastaccessdate;
 		
@@ -16,7 +25,7 @@ public class UserVO {
 		super();
 	}
 		
-	public UserVO(int no, String email, String pw, int gender, int agerange, int emailflag, Date createdate,
+	public UserVO(int no, String email, String pw, int gender, int agerange, String emailflag, Date createdate,
 			Date lastaccessdate) {
 		super();
 		this.no = no;
@@ -59,12 +68,6 @@ public class UserVO {
 	public void setAgerange(int agerange) {
 		this.agerange = agerange;
 	}
-	public int getEmailflag() {
-		return emailflag;
-	}
-	public void setEmailflag(int emailflag) {
-		this.emailflag = emailflag;
-	}
 	public Date getCreatedate() {
 		return createdate;
 	}
@@ -76,6 +79,14 @@ public class UserVO {
 	}
 	public void setLastaccessdate(Date lastaccessdate) {
 		this.lastaccessdate = lastaccessdate;
+	}
+
+	public String getEmailflag() {
+		return emailflag;
+	}
+
+	public void setEmailflag(String emailflag) {
+		this.emailflag = emailflag;
 	}
 
 	@Override

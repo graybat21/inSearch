@@ -5,7 +5,7 @@
 
 
 	<select id="emailCheck" parameterType="UserVO" resultType="int">
-		select count(email) from tb_user where email=#{email}
+		select count(email) from tb_user where email = #{email}
 	</select>
 	<update id="emailaccept" parameterType="map">
 		update tb_user
@@ -14,9 +14,9 @@
 	</update>
 	<insert id="join" parameterType="UserVO">
 		insert into tb_user 
-			(`id`,`pw`,`email`,`agerange`,`gender`,`emailflag`)
+			(`pw`,`email`,`agerange`,`gender`,`emailflag`)
 		VALUES
-			(#{id},#{pw},#{email#},#{agerange},#{gender},#{emailflag})
+			(#{pw},#{email},#{agerange},#{gender},#{emailflag})
 	</insert>
 	<select id="userLogin" parameterType="String">
 		select * from tb_user where
