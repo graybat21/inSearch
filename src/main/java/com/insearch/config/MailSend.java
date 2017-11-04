@@ -1,8 +1,6 @@
 package com.insearch.config;
 
-import java.util.Date;
-import java.util.Properties;
-
+import java.util.Properties; 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -15,12 +13,11 @@ import javax.mail.internet.MimeUtility;
 
 public class MailSend {
 	
-	public static void sendEmail(String email, int emailflag){
+	public static void send_Email(String email,String emailflag){
 		String host = "smtp.gmail.com";
 		String subject = "Insearch 메일인증";
 		String fromName = "Insearch";
-//		String from = "sadspirit1159@gmail.com";
-		String from = "insearch1234567@gmail.com";
+		String from = "sadspirit1159@gmail.com";
 		String to1 = email;		
 		String content = "<a href='http://localhost:8080/emailAccept?email="+email+"&emailflag=" + emailflag+"'>이 곳을 클릭하면 인증이 완료 됩니다.</a>";
 		
@@ -46,8 +43,8 @@ public class MailSend {
 			InternetAddress[] address1 = { new InternetAddress(to1) };
 			msg.setRecipients(Message.RecipientType.TO, address1);
 			msg.setSubject(subject);
-			msg.setSentDate(new Date());
-			msg.setContent(content, "text/html;charset=utf-8");
+			msg.setSentDate(new java.util.Date());
+			msg.setContent(content, "text/html;charset=euc-kr");
 			
 			Transport.send(msg);
 		}catch (MessagingException e) {
@@ -56,4 +53,9 @@ public class MailSend {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+
+	
 }

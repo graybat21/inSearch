@@ -1,29 +1,36 @@
 package com.insearch.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserVO {
 	private int no;
 	private String id;
-	private String pw;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	private String email;
+	private String pw;
 	private int gender;
 	private int agerange;
-	private int emailflag;
+	private String emailflag;
 	private Date createdate;
 	private Date lastaccessdate;
 		
 	public UserVO() {
 		super();
 	}
-
-	public UserVO(int no, String id, String pw, String email, int gender, 
-			int agerange, int emailflag, Date createdate, Date lastaccessdate) {
+		
+	public UserVO(int no, String email, String pw, int gender, int agerange, String emailflag, Date createdate,
+			Date lastaccessdate) {
 		super();
 		this.no = no;
-		this.id = id;
-		this.pw = pw;
 		this.email = email;
+		this.pw = pw;
 		this.gender = gender;
 		this.agerange = agerange;
 		this.emailflag = emailflag;
@@ -34,79 +41,60 @@ public class UserVO {
 	public int getNo() {
 		return no;
 	}
-
 	public void setNo(int no) {
 		this.no = no;
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getPw() {
-		return pw;
-	}
-
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 	public int getGender() {
 		return gender;
 	}
-
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
-
 	public int getAgerange() {
 		return agerange;
 	}
-
 	public void setAgerange(int agerange) {
 		this.agerange = agerange;
 	}
-
-	public int getEmailflag() {
-		return emailflag;
-	}
-
-	public void setEmailflag(int emailflag) {
-		this.emailflag = emailflag;
-	}
-
 	public Date getCreatedate() {
 		return createdate;
 	}
-
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
-
 	public Date getLastaccessdate() {
 		return lastaccessdate;
 	}
-
 	public void setLastaccessdate(Date lastaccessdate) {
 		this.lastaccessdate = lastaccessdate;
 	}
 
+	public String getEmailflag() {
+		return emailflag;
+	}
+
+	public void setEmailflag(String emailflag) {
+		this.emailflag = emailflag;
+	}
+
 	@Override
 	public String toString() {
-		return "UserVO [no=" + no + ", id=" + id + ", pw=" + pw + ", email=" + email + ", gender=" + gender
-				+ ", agerange=" + agerange + ", emailflag=" + emailflag + ", createdate=" + createdate
-				+ ", lastaccessdate=" + lastaccessdate + "]";
+		return "UserVO [no=" + no + ", email=" + email + ", pw=" + pw + ", gender=" + gender + ", agerange=" + agerange
+				+ ", emailflag=" + emailflag + ", createdate=" + createdate + ", lastaccessdate=" + lastaccessdate
+				+ "]";
 	}
+	
+	
 }

@@ -164,7 +164,7 @@ function removeMarkers(){
 }
 
 </script>   
-<div id="map" style="height: 1000px">   
+<div id="map" style="height: 100%">   
 <div>   
 	<form method="get">
 		<select name="category" id="category">

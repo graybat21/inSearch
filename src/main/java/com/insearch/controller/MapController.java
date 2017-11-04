@@ -23,14 +23,14 @@ public class MapController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MapController.class);
 	
-	@RequestMapping(value = "/mapSearch.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mapSearch", method = RequestMethod.GET)
 	public ModelAndView map() throws Exception {
 		ModelAndView mav = new ModelAndView("map/map/장소 검색");
 		logger.info("MAP TEST");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/placeDetail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/placeDetail", method = RequestMethod.GET)
 	public ModelAndView placeDetailTest(String placeId) throws Exception {
 		ModelAndView mav = new ModelAndView("placeDetail");
 		String detailsUrl = "https://maps.googleapis.com/maps/api/place/details/json"

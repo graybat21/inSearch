@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/instyle_css.css">
 <style>
 #content {
-	min-height: 1000px
+	height: 100%;
 }
 </style>
 </head>
