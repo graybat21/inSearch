@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.insearch.dao.userDAO">
-<!-- <mapper namespace="com.ustyle.mappers.userMapper"> -->
+<mapper namespace="com.insearch.mappers.userMapper">
 
-
+	<select id="userExist" parameterType="UserVO" resultType="int">
+    	select count(*) from tb_user
+    	where id = #{id}
+    	<if test="email != null || email == ''">
+   		and email = #{email}
+		</if>
+    </select>
+    
 	<select id="emailCheck" parameterType="UserVO" resultType="int">
 		select count(email) from tb_user where email=#{email}
 	</select>
@@ -16,7 +22,7 @@
 		insert into tb_user 
 			(`id`,`pw`,`email`,`agerange`,`gender`,`emailflag`)
 		VALUES
-			(#{id},#{pw},#{email#},#{agerange},#{gender},#{emailflag})
+			(#{id},#{pw},#{email},#{agerange},#{gender},#{emailflag})
 	</insert>
 	<select id="userLogin" parameterType="String">
 		select * from tb_user where
@@ -27,4 +33,3 @@
 	</select>
 
 </mapper>
-
