@@ -34,6 +34,7 @@ function codeAddress(){
     if ( category == '' ) {
 		alert("카테고리를 선택하세요.");
 		return;
+		
 	}
     else if ( radius == '' ) {
     	alert("거리 반경을 선택하세요.");
