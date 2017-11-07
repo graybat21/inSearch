@@ -43,7 +43,9 @@
 	
 	<!-- tiles3 -->
 	<beans:bean id="tilesViewResolver"
-		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	</beans:bean>
+	
 	<beans:bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
@@ -52,6 +54,7 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
+	
 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
