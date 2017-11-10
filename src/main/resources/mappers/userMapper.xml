@@ -7,9 +7,9 @@
 	<select id="emailCheck" parameterType="UserVO" resultType="int">
 		select count(email) from tb_user where email = #{email}
 	</select>
-	<update id="emailaccept" parameterType="map">
+	<update id="emailAccept" parameterType="map">
 		update tb_user
-			emailflag = 0 
+		set	emailflag = 'y' 
 		where email = #{email} and emailflag=#{emailflag}
 	</update>
 	<insert id="join" parameterType="UserVO">
@@ -18,13 +18,21 @@
 		VALUES
 			(#{pw},#{email},#{agerange},#{gender},#{emailflag})
 	</insert>
-	<select id="userLogin" parameterType="String">
+	<select id="userLogin" parameterType="String" resultType="UserVO">
 		select * from tb_user where
 		email=#{email}
 	</select>
 	<select id="selectList" resultType="UserVO">
 		select * from tb_user
 	</select>
+	<delete id="memberSecession" parameterType="String">
+		delete from tb_user where email=#{email}
+	</delete>
+	<update id="pwChange" parameterType="map">
+		update tb_user 
+		set pw = #{pw} 
+		where email = #{email}
+	</update>
 
 </mapper>
 

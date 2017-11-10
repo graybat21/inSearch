@@ -10,11 +10,19 @@
 <body onload="logingo()">
 	<div class="form">		
 		<h3>이메일 인증이 완료 되었습니다.</h3>
-		<h2>3초후 로그인화면으로 이동합니다.</h2>		
+		<div id="num" ></div>		
 	</div>
 <script>
-function logingo(){
-	setTimeout(function(){location.href="logingo.do"},3000);
+var secondnum=3;
+var secondcheck=0;
+function logingo(){	
+	if(secondcheck<3){		
+		document.getElementById("num").innerHTML=secondnum+"초후 로그인화면으로 이동합니다.";
+		secondnum--;
+		secondcheck++;
+		setTimeout('logingo()',1000);
+	}
+	setTimeout(function(){location.href="login.do"},3000);
 }
 </script>	
 </body>

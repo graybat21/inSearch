@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-검색
+<a href="memberSecession">회원탈퇴</a>
 
+<a href="logout">로그아웃</a><br> 
+검색
 </body>
 </html>
