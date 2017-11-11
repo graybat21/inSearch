@@ -127,7 +127,7 @@ function callback(results, status) {
             var li = document.createElement('li');
         	var a = document.createElement('a'); 
         	
-            a.href = "/map/placeDetail.do?placeId=" + results[i].place_id;  
+            a.href = "/map/placeDetail/" + results[i].place_id;  
 		    a.innerHTML = results[i].name;
 		    li.appendChild(a);  
 		    placeEach.appendChild(li);  
@@ -137,7 +137,7 @@ function callback(results, status) {
 
 function createMarkerListener(marker) {
     google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent('<a href="placeDetail.do?placeId=' + marker.placeId + '" target="_blank">' + marker.placeName + '</a>');
+        infowindow.setContent('<a href="/map/placeDetail/' + marker.placeId + '" target="_blank">' + marker.placeName + '</a>');
         infowindow.open(map, this);    
     });
 }
