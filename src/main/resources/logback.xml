@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://www.padual.com/java/logback.xsd">
@@ -10,24 +10,24 @@
 		</encoder>
 	</appender>
 
-	<!-- <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss" /> -->
-	<!-- <appender name="FILE" class="ch.qos.logback.core.FileAppender"> -->
-	<!-- <file>log-${bySecond}.txt</file> -->
-	<!-- <append>true</append> -->
-	<!-- <encoder> -->
-	<!-- <pattern>[%d{yyyy/MM/dd HH:mm:ss.SSS}][%thread][%-5level][%logger{0}] 
-		%msg%n</pattern> -->
-	<!-- </encoder> -->
-	<!-- </appender> -->
+	<timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss" />
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+	<file>log-${bySecond}.txt</file>
+	<append>true</append>
+	<encoder>
+	<pattern>[%d{yyyy/MM/dd HH:mm:ss.SSS}][%thread][%-5level][%logger{0}] 
+		%msg%n</pattern>
+	</encoder>
+	</appender>
 	<appender name="ROLLING"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>log.txt</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
+			rollover daily
 			<fileNamePattern>insearch-%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<!-- or whenever the file size reaches 100MB -->
+				or whenever the file size reaches 100MB
 				<maxFileSize>10MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
 			<maxHistory>30</maxHistory>
@@ -44,11 +44,11 @@
 		<appender-ref ref="ROLLING" />
 	</root>
 	<logger name="com.insearch" level="INFO" />
-	<!-- <logger name="jdbc.sqlonly" level="INFO" /> <logger name="jdbc.sqltiming" 
+	<logger name="jdbc.sqlonly" level="INFO" /> <logger name="jdbc.sqltiming" 
 		level="OFF" /> <logger name="jdbc.audit" level="OFF" /> <logger name="jdbc.resultset" 
-		level="OFF" /> <logger name="org.quartz.core" level="INFO"/> -->
+		level="OFF" /> <logger name="org.quartz.core" level="INFO"/>
 
-	<!-- log4jdbc-log4j2 -->
+	log4jdbc-log4j2
 	<logger name="java.sql" level="error" />
 	<logger name="jdbc.sqlonly" level="INFO" />
 	<logger name="jdbc.sqltiming" level="INFO" />
@@ -56,4 +56,4 @@
 	<logger name="jdbc.resultset" level="ERROR" />
 	<logger name="jdbc.resultsettable" level="ERROR" />
 	<logger name="jdbc.connection" level="INFO" />
-</configuration>
+</configuration> -->

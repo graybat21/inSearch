@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta  charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/instyle_css.css">
 </head>
 <body onload="logingo()">
@@ -14,7 +12,7 @@
 	</div>
 <script>
 function logingo(){
-	setTimeout(function(){location.href="logingo.do"},3000);
+	setTimeout(function(){location.href="login"},3000);
 }
 </script>	
 </body>

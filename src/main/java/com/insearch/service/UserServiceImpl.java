@@ -30,9 +30,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public int emailAccept(String email,int emailflag){
-		//update
-		return 1;
+	public int emailAccept(String email,String emailflag){
+		return userDao.emailAccept(email, emailflag);
 	}
 	
 	@Override

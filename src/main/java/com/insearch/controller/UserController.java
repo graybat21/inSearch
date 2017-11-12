@@ -1,6 +1,12 @@
 package com.insearch.controller;
 
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,18 +67,21 @@ public class UserController {
 	// }
 	//
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public ModelAndView join(UserVO userdto) {
+	public ModelAndView join(HttpServletRequest req, UserVO userdto) {
 		System.out.println(userdto.getEmail() + " // " + userdto.getPw() + " // " + userdto.getGender() + " // "
 				+ userdto.getAgerange());
 		ModelAndView mav = new ModelAndView();
 
-		String emailflag = String.valueOf((int)Math.random() * 8999 + 1000);
+		String emailflag = getUUID();
 		userdto.setEmailflag(emailflag);
 
 		int joinCheck = userService.join(userdto);
 		System.out.println(emailflag);
 		System.out.println("joincheck" + joinCheck);
-		MailSend.send_Email(userdto.getEmail(), emailflag);
+		String getHost = req.getRequestURL().toString();
+		getHost = getHost.replaceAll("/join", "");
+		System.out.println("getHost : " + getHost);
+		MailSend.send_Email(userdto.getEmail(), emailflag, getHost);
 		mav.setViewName("user/emailready/emailready");
 		return mav;
 	}
@@ -89,20 +98,24 @@ public class UserController {
 		mav.setViewName("Json");
 		return mav;
 	}
-	//
-	// @RequestMapping("/emailAccept.do")
-	// public ModelAndView emailAccept(UserVO userdto){
-	//
-	// ModelAndView mav = new ModelAndView();
-	// int
-	// emailAccept=userDao.emailAccept(userdto.getEmail(),userdto.getEmailflag());
-	// if(emailAccept>0){
-	// mav.setViewName("emailaccept");
-	// System.out.println("이메일 인증완료");
-	// }else{
-	// mav.setViewName("emailfail");
-	// System.out.println("정상적이지 않은 경로로 인증 시도 ");
-	// }
-	// return mav;
-	// }
+
+	@RequestMapping(value = "/emailAccept", method = RequestMethod.GET)
+	public ModelAndView emailAccept(@RequestParam String email, @RequestParam String emailflag) {
+
+		ModelAndView mav = new ModelAndView();
+		int emailAccept = userService.emailAccept(email, emailflag);
+		if (emailAccept > 0) {
+			mav.setViewName("user/emailaccept/이메일 인증완료");
+			System.out.println("이메일 인증완료");
+		} else {
+			mav.setViewName("user/emailfail/이메일 인증실패");
+			System.out.println("정상적이지 않은 경로로 인증 시도 ");
+		}
+		return mav;
+	}
+	
+	private String getUUID() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+
 }

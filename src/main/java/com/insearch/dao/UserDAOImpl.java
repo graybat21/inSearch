@@ -1,5 +1,8 @@
 package com.insearch.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,9 +35,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public int emailAccept(String email,int emailflag){
-		//update
-		return 1;
+	public int emailAccept(String email,String emailflag){
+		Map<String, Object> map = new HashMap<>();
+		map.put("email", email);
+		map.put("emailflag", emailflag);
+//		return session.update(namespace + ".emailAccept", map);
+		return session.update("emailAccept", map);
 	}
 	
 	@Override

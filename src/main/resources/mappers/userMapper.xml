@@ -5,9 +5,9 @@
 	<select id="emailCheck" parameterType="UserVO" resultType="int">
 		select count(email) from tb_user where email = #{email}
 	</select>
-	<update id="emailaccept" parameterType="map">
+	<update id="emailAccept" parameterType="map">
 		update tb_user
-			emailflag = 0 
+			set emailflag = 'y'
 		where email = #{email} and emailflag=#{emailflag}
 	</update>
 	<insert id="join" parameterType="UserVO">

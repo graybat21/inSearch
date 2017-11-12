@@ -10,16 +10,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 
 public class MailSend {
 	
-	public static void send_Email(String email,String emailflag){
+	public static void send_Email(String email,String emailflag, String getHost){
 		String host = "smtp.gmail.com";
 		String subject = "Insearch 메일인증";
 		String fromName = "Insearch";
 		String from = "sadspirit1159@gmail.com";
 		String to1 = email;		
-		String content = "<a href='http://localhost:8080/emailAccept?email="+email+"&emailflag=" + emailflag+"'>이 곳을 클릭하면 인증이 완료 됩니다.</a>";
+//		String content = "<a href='http://localhost:8080/emailAccept?email="+email+"&emailflag=" + emailflag+"'>이 곳을 클릭하면 인증이 완료 됩니다.</a>";
+		String content = "<a href='" + getHost +"/emailAccept?email="+email+"&emailflag=" + emailflag+"'>이 곳을 클릭하면 인증이 완료 됩니다.</a>";
 		
 		try{
 			Properties props = new Properties();
