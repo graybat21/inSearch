@@ -2,21 +2,20 @@ package com.insearch.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.insearch.config.MailSend;
-import com.insearch.dao.userDAO;
+import com.insearch.service.UserService;
 import com.insearch.vo.UserVO;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private userDAO userService;
+	private UserService userService;
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ModelAndView checkDB() {
