@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 		locations ={ "file:src/main/webapp/WEB-INF/spring/appServlet/test-context.xml"})
 public class MyBatisTest {
 
-	@Inject
+/*	@Inject
 	private SqlSessionFactory sqlFactory;
 	
 	@Test
@@ -30,7 +30,7 @@ public class MyBatisTest {
 		catch ( Exception e ) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }
 
 

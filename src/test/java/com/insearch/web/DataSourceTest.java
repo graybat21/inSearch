@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 	locations ={ "file:src/main/webapp/WEB-INF/spring/appServlet/test-context.xml"})
 public class DataSourceTest {
 
-	@Inject
+/*	@Inject
 	private DataSource ds;
 	
 	@Test
@@ -27,7 +27,7 @@ public class DataSourceTest {
 		catch ( Exception e ) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }
 
 
