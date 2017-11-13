@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.insearch.config.MailSend;
-import com.insearch.dao.userDAO;
+import com.insearch.service.UserService;
 import com.insearch.vo.UserVO;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private userDAO userService;
+	private UserService userService;
 
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;	

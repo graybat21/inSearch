@@ -10,7 +10,7 @@
 <title><tiles:getAsString name="title" /></title>
 <style>
 #content {
-	min-height: 1000px
+	height: 100%;
 }
 </style>
 </head>
