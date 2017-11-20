@@ -7,8 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
+<!-- Css -->
+<link rel="stylesheet" type="text/css" href="${myContextPath}/css/instyle_css.css">
 <!-- Jquery Js -->
 <script type="text/javascript" src="${myContextPath}/js/jquery-1.11.3.min.js"></script>
 <!-- Slider Js -->
 <script type="text/javascript" src="${myContextPath}/js/jquery-ui.min.js"></script>
-

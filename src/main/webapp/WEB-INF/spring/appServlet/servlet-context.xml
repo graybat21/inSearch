@@ -70,18 +70,16 @@
 		value="${upload_path}"></beans:constructor-arg> </beans:bean -->
 
 	<!-- Interceptor -->
-	<!--beans:bean id="loginInterceptor" class="com.ustyle.interceptor.LoginInterceptor"></beans:bean> 
-		<beans:bean id="authInterceptor" class="com.ustyle.interceptor.AuthInterceptor"></beans:bean -->
+	<beans:bean id="loginInterceptor" class="com.insearch.interceptor.LoginInterceptor"></beans:bean> 
+	<beans:bean id="authInterceptor" class="com.insearch.interceptor.AuthInterceptor"></beans:bean>
 
-	<!--interceptors> <interceptor> <mapping path="/loginPost.do" /> <mapping 
-		path="/searchPassword.do" /> <mapping path="/register.do" /> <beans:ref bean="loginInterceptor" 
-		/> </interceptor> <interceptor> <mapping path="/userInfo.do" /> <mapping 
-		path="/update.do" /> <mapping path="/delete.do" /> <mapping path="/purchaseList.do" 
-		/> <mapping path="/cart/addCart.do" /> <mapping path="/cart/viewCart.do" 
-		/> <mapping path="/pin/myPinBoardList.do" /> <mapping path="/pin/createPinBoard.do" 
-		/> <mapping path="/board/qnaWrite.do" /> <mapping path="/board/qnaModify.do" 
-		/> <mapping path="/board/myQnaList.do" /> <beans:ref bean="authInterceptor" 
-		/> </interceptor> </interceptors -->
+	<interceptors> 
+		<interceptor> 
+			<mapping path="/map/mapSearch" />
+			<mapping path="/map/placeDetail" />
+			<beans:ref bean="authInterceptor" /> 
+		</interceptor> 
+	</interceptors>
 
 	<context:component-scan base-package="com.insearch" />
 

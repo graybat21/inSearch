@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.insearch.dao.userDAO">
-<!-- <mapper namespace="com.ustyle.mappers.userMapper"> -->
-
+<mapper namespace="com.insearch.mappers.userMapper">
 
 	<select id="emailCheck" parameterType="String" resultType="int">
 		select count(email) from tb_user where email = #{email}
@@ -10,7 +8,7 @@
 	<update id="emailAccept" parameterType="map">
 		update tb_user
 		set	emailflag = 'y' 
-		where email = #{email} and emailflag=#{emailflag}
+		where email = #{email} and emailflag = #{emailflag}
 	</update>
 	<insert id="join" parameterType="UserVO">
 		insert into tb_user 
@@ -20,13 +18,13 @@
 	</insert>
 	<select id="userLogin" parameterType="String" resultType="UserVO">
 		select * from tb_user where
-		email=#{email}
+		email = #{email}
 	</select>
 	<select id="selectList" resultType="UserVO">
 		select * from tb_user
 	</select>
 	<delete id="memberSecession" parameterType="String">
-		delete from tb_user where email=#{email}
+		delete from tb_user where email = #{email}
 	</delete>
 	<update id="pwChange" parameterType="map">
 		update tb_user 

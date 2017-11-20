@@ -129,6 +129,7 @@ function callback(results, status) {
         	
             a.href = "/map/placeDetail/" + results[i].place_id;  
 		    a.innerHTML = results[i].name;
+		    a.target = "_blank";
 		    li.appendChild(a);  
 		    placeEach.appendChild(li);  
         }
@@ -166,8 +167,9 @@ function removeMarkers(){
 
 </script>   
 <div id="map" style="height: 100%">   
-<div>   
-	<form method="get">
+<div>
+	<form method="get">	
+		<div class="field-wrap">
 		<select name="category" id="category">
 			<option selected value="">분류 선택</option>
 			<option value="cafe">카페</option>
@@ -177,13 +179,16 @@ function removeMarkers(){
 			<option value="restaurant">식당</option>
 		</select>
 	    <select name="radius" id="radius">
-			<option selected value="">반경 선택</option>
+			<option selected value="">반경(m) 선택</option>
 			<option value="100">100</option>
 			<option value="200">200</option>
 			<option value="500">500</option>
 		</select>
+		</div>
+		<div class="field-wrap">
 	    <input name="address" id="address" type="text" value="Seoul City Hall">   
 	    <input type="button" value="검색" onclick="codeAddress()">
+	    </div>
 	</form> 
 </div>   
 <div id="r"></div>    

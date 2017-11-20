@@ -75,7 +75,7 @@
     			"X-HTTP-Method-Override" : "POST"
     		},
     		dataType: "text",
-    		data: JSON.stringify({store_no: store_no, comment: comment, star: star, user_no, user_no}),
+    		data: JSON.stringify({store_no: store_no, comment: comment, star: star, user_no: user_no}),
     		success: function(result) {
     			console.log("result: " + result);
     			if ( result == 'SUCCESS' ) {

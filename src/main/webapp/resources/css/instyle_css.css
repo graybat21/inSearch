@@ -29,7 +29,6 @@ h3 { font-family: 'Droid Serif', serif; font-size: 30px; }
 h4 { font-family: 'Droid Serif', serif; padding: 3px; margin: 5px 0 0 0; }
 h4 a { text-decoration: underline; }
 h4 a:hover { text-decoration: none; }
-a {text-decoration:none;} 
 nav {padding: 0; margin: 10px 0;}
 nav a { background: blue; color: #F9F9F9; display: block; float: left; padding: 10px; }
 nav a:visited { color: #f9f9f9; }
@@ -116,6 +115,10 @@ a {
   }
 }
 
+a:hover {
+	cursor:pointer;
+}
+
 .form {
   background:rgba($form-bg,.9);
   padding: 40px;
@@ -144,7 +147,6 @@ a {
     float:left;
     width:50%;
     text-align:center;
-    cursor:pointer;
     transition:.5s ease;
     &:hover {
       background:$main-dark;
@@ -203,7 +205,7 @@ label.highlight {
 }
 
 
-input, textarea {
+input[type="email"], input[type="password"], input[type="text"], textarea {
   font-size:22px;
   display:block;
   max-width:576px !important;
@@ -267,6 +269,8 @@ select{
   color:$white;
   transition:all.5s ease;
   -webkit-appearance: none;
+  cursor: pointer;
+  
   &:hover, &:focus {
     background:$main-dark;
   }
