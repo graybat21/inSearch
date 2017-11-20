@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.insearch.mappers.mapMapper">
+
+	<select id="getStoreNo" parameterType="StoreVO" resultType="int">
+		select COALESCE(MAX(no), 0) from tb_store 
+		where name = #{name} and address = #{address} 
+		and lat = #{lat} and lng = #{lng}
+	</select>
+	
+	<insert id="registerStore" parameterType="StoreVO">
+		insert into tb_store(name, address, lat, lng, createdate)
+    	values(#{name}, #{address}, #{lat}, #{lng}, now())
+	</insert>
+	
+	<insert id="registerComment" parameterType="EvaluationVO">
+		insert into tb_evaluation(store_no, comment, star, user_no, createdate)
+    	values(#{store_no}, #{comment}, #{star}, #{user_no}, now())
+	</insert>
+
+</mapper>
+
