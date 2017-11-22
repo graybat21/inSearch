@@ -9,6 +9,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,8 +26,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.insearch.service.MapService;
+import com.insearch.service.UserService;
 import com.insearch.vo.EvaluationVO;
 import com.insearch.vo.StoreVO;
+import com.insearch.vo.UserVO;
 
 @Controller
 @RequestMapping("/map/*")
@@ -37,6 +40,9 @@ public class MapController {
 	@Inject
 	private MapService mapService;
 	
+	@Inject
+	private UserService userService;
+	
 	@RequestMapping(value = "/mapSearch", method = RequestMethod.GET)
 	public ModelAndView map() throws Exception {
 		ModelAndView mav = new ModelAndView("map/map/장소 검색");
@@ -45,7 +51,8 @@ public class MapController {
 	}
 	
 	@RequestMapping(value = "/placeDetail/{placeId}", method = RequestMethod.GET)
-	public ModelAndView placeDetail(@PathVariable("placeId") String placeId) throws Exception {
+	public ModelAndView placeDetail(@PathVariable("placeId") String placeId,
+			HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView("map/placeDetail/장소 상세");
 		
 		String detailsUrl = "https://maps.googleapis.com/maps/api/place/details/json"
@@ -67,8 +74,13 @@ public class MapController {
 		storeVo.setLat(lat);
 		storeVo.setLng(lng);
 		
+		String loginEmail = (String) session.getAttribute("email");
+		UserVO loginUser = userService.userLogin(loginEmail);
+		int userNo = loginUser.getNo();
+		
 		mav.addObject("storeVo", storeVo);
 		mav.addObject("placeId", placeId);
+		mav.addObject("userNo", userNo);
 		
 		int storeNo = mapService.getStoreNo(storeVo);
 		
@@ -77,44 +89,44 @@ public class MapController {
 		return mav;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "registerStore", method = RequestMethod.POST) 
-	public ResponseEntity<?> registerStore(@RequestBody StoreVO storeVo) {
-		ResponseEntity<?> entity = null;
-		
-		int no;
-		
-		try {
-			mapService.registerStore(storeVo);
-			no = mapService.getStoreNo(storeVo);
-			
-			entity = new ResponseEntity<Integer>(no, HttpStatus.OK);
-		}
-		catch ( Exception e ) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		
-		return entity;
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "registerComment", method = RequestMethod.POST) 
-	public ResponseEntity<String> registerComment(@RequestBody EvaluationVO evaluationVo) {
-		ResponseEntity<String> entity = null;
-		
-		try {
-			mapService.registerComment(evaluationVo);
-			
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		}
-		catch ( Exception e ) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		
-		return entity;
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "registerStore", method = RequestMethod.POST) 
+//	public ResponseEntity<?> registerStore(@RequestBody StoreVO storeVo) {
+//		ResponseEntity<?> entity = null;
+//		
+//		int no;
+//		
+//		try {
+//			mapService.registerStore(storeVo);
+//			no = mapService.getStoreNo(storeVo);
+//			
+//			entity = new ResponseEntity<Integer>(no, HttpStatus.OK);
+//		}
+//		catch ( Exception e ) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//		
+//		return entity;
+//	}
+//	
+//	@ResponseBody
+//	@RequestMapping(value = "registerComment", method = RequestMethod.POST) 
+//	public ResponseEntity<String> registerComment(@RequestBody EvaluationVO evaluationVo) {
+//		ResponseEntity<String> entity = null;
+//		
+//		try {
+//			mapService.registerComment(evaluationVo);
+//			
+//			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+//		}
+//		catch ( Exception e ) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//		
+//		return entity;
+//	}
 	
 	private String jsonReadAll(Reader reader) throws IOException {
 		StringBuilder sb = new StringBuilder();

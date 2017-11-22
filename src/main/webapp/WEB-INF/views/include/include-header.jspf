@@ -13,3 +13,5 @@
 <script type="text/javascript" src="${myContextPath}/js/jquery-1.11.3.min.js"></script>
 <!-- Slider Js -->
 <script type="text/javascript" src="${myContextPath}/js/jquery-ui.min.js"></script>
+<!-- Raty Js -->
+<script type="text/javascript" src="${myContextPath}/js/jquery.raty.js"></script>

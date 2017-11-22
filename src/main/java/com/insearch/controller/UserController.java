@@ -70,7 +70,7 @@ public class UserController {
 		return mav;
 	}
 
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request,HttpServletResponse response,HttpSession session){
 		logger.info("로그아웃");
 
@@ -133,7 +133,7 @@ public class UserController {
 				}
 				
 				if ( autologin_check == 0 ) {
-					Cookie ck1 = new Cookie("insearch",userdto.getEmail());
+					Cookie ck1 = new Cookie("insearch", userdto.getEmail());
 				 	ck1.setMaxAge(60*60*24*30);
 				 	response.addCookie(ck1);
 				}

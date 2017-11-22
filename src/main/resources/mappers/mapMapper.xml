@@ -17,6 +17,19 @@
 		insert into tb_evaluation(store_no, comment, star, user_no, createdate)
     	values(#{store_no}, #{comment}, #{star}, #{user_no}, now())
 	</insert>
+	
+	<select id="selectCommentCnt" parameterType="int" resultType="int">
+		select count(*) from tb_evaluation
+		where store_no = #{store_no}
+	</select>
+	
+	<select id="selectCommentList" parameterType="hashmap" resultType="hashmap">
+		select substring(u.email, 1, 4) as email, e.comment as comment, e.createdate as createdate
+		from tb_evaluation as e, tb_user as u
+		where e.user_no = u.no and store_no = #{store_no}
+		order by e.no desc
+		limit #{start}, #{pagecnt}
+	</select>
 
 </mapper>
 

@@ -25,30 +25,34 @@ public class UserServiceImpl implements UserService {
 		UserVO userVO = userDao.selectList();
 		return userVO;
 	}
-
+	
+	@Override
 	public int emailCheck(String email){
 		int result=userDao.emailCheck(email);
 		return result;
 	}
 	
-	public int emailAccept(String email,String emailflag){
-		HashMap<String, String> map=new HashMap<String, String>();
-		map.put("email",email);
-		map.put("emailflag",emailflag);		
-		System.out.println(map.get("email")+" // "+map.get("emailflag"));
-		int result=userDao.emailAccept(email, emailflag);
-		System.out.println(result);
+	@Override
+	public int emailAccept(String email, String emailflag) {
+		HashMap<String, String> map=new HashMap<>();
+		map.put("email", email);
+		map.put("emailflag", emailflag);		
+		
+//		System.out.println(map.get("email") + " // " + map.get("emailflag"));
+		int result = userDao.emailAccept(email, emailflag);
+//		System.out.println(result);
 		return result;
 	}
 	
-	
-	public int join(UserVO userVO){
-		int result=userDao.join(userVO);
+	@Override
+	public int join(UserVO userVO) {
+		int result = userDao.join(userVO);
 		return result;
 	}
 	
+	@Override
 	public UserVO userLogin(String email){		
-		UserVO userdto=userDao.userLogin(email);		
+		UserVO userdto = userDao.userLogin(email);		
 		return userdto;
 	}
 	

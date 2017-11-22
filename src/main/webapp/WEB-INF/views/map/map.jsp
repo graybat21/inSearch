@@ -2,6 +2,34 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>   
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<link href="${myContextPath}/css/map_css.css" rel="stylesheet" type="text/css" />
+<div id="map" style="height: 100%">   
+<div>
+	<div class="field-wrap">
+	<select name="category" id="category">
+		<option selected value="">분류 선택</option>
+		<option value="cafe">카페</option>
+		<option value="store">상점</option>
+		<option value="library">도서관</option>
+		<option value="shopping_mall">쇼핑몰</option>
+		<option value="restaurant">식당</option>
+	</select>
+    <select name="radius" id="radius">
+		<option selected value="">반경(m) 선택</option>
+		<option value="100">100</option>
+		<option value="200">200</option>
+		<option value="500">500</option>
+	</select>
+	</div>
+	<div class="field-wrap">
+    <input name="address" id="address" type="text" value="Seoul City Hall">   
+    <input type="button" value="검색" onclick="codeAddress()">
+    </div>
+</div>   
+<div id="r"></div>    
+<div id="map_canvas" style="height:50%;margin-top:30px"></div>
+<div id="place_each" style="margin-top: 30px"></div>   
+</div>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDAZo3REaAB8Ev8AhAsaaB3XgKVTrrA8Es&&libraries=places&sensor=false"></script>   
 <script type="text/javascript">
 var geocoder;  
@@ -50,7 +78,7 @@ function codeAddress(){
             // map.setCenter(results[0].geometry.location);  
             // addMark(results[0].geometry.location.lat(), results[0].geometry.location.lng());  
                           
-            for(var i in results){  
+            for ( var i in results ) {  
                 //r.innerHTML += results[i].formatted_address+',';  
                 var li = document.createElement('li');  
                 var a = document.createElement('a');  
@@ -63,8 +91,9 @@ function codeAddress(){
                 li.appendChild(a);  
                 r.appendChild(li);  
             }             
-        } else {  
-            r.innerHTML = "검색 결과가 없습니다."+status;              
+        } 
+        else {  
+            r.innerHTML = "검색 결과가 없습니다." + status;              
         }  
     });  
 }  
@@ -165,34 +194,4 @@ function removeMarkers(){
     }
 }
 
-</script>   
-<div id="map" style="height: 100%">   
-<div>
-	<form method="get">	
-		<div class="field-wrap">
-		<select name="category" id="category">
-			<option selected value="">분류 선택</option>
-			<option value="cafe">카페</option>
-			<option value="store">상점</option>
-			<option value="library">도서관</option>
-			<option value="shopping_mall">쇼핑몰</option>
-			<option value="restaurant">식당</option>
-		</select>
-	    <select name="radius" id="radius">
-			<option selected value="">반경(m) 선택</option>
-			<option value="100">100</option>
-			<option value="200">200</option>
-			<option value="500">500</option>
-		</select>
-		</div>
-		<div class="field-wrap">
-	    <input name="address" id="address" type="text" value="Seoul City Hall">   
-	    <input type="button" value="검색" onclick="codeAddress()">
-	    </div>
-	</form> 
-</div>   
-<div id="r"></div>    
-<div id="map_canvas" style="height:50%;margin-top:30px"></div>
-<div id="place_each" style="margin-top: 30px"></div>   
-</div>   
-
+</script>

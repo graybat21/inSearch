@@ -1,5 +1,8 @@
 package com.insearch.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -29,4 +32,13 @@ public class MapServiceImpl implements MapService {
 		mapDao.registerComment(evaluationVo);
 	}
 
+	@Override
+	public int selectCommentCnt(int store_no) throws Exception {
+		return mapDao.selectCommentCnt(store_no);
+	}
+	
+	@Override
+	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) {
+		return mapDao.selectCommentList(commentMap);
+	}
 }
