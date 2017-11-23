@@ -38,6 +38,11 @@ public class MapServiceImpl implements MapService {
 	}
 	
 	@Override
+	public double selectAvgStar(int store_no) throws Exception {
+		return mapDao.selectAvgStar(store_no);
+	}
+	
+	@Override
 	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) {
 		return mapDao.selectCommentList(commentMap);
 	}

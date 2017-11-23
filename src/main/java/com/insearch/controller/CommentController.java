@@ -85,9 +85,13 @@ public class CommentController {
 			int start = (page - 1) * pagecnt;
 			
 			pageMaker.setPage(page);
+
+			System.out.println("fffff");
+			int totalCommentCnt = mapService.selectCommentCnt(store_no);
+			double avgStar = mapService.selectAvgStar(store_no);
 			
-			int totalCommentCnt = mapService.selectCommentCnt(store_no); // DB연동_ 총 갯수 구해오기
 			logger.info("totalCommentCnt = " + totalCommentCnt);
+			logger.info("avgStar = " + avgStar);
 			pageMaker.setCount(totalCommentCnt, pagecnt, countPerPaging);
 			
 			HashMap<String, Object> commentMap = new HashMap<>();
@@ -100,6 +104,7 @@ public class CommentController {
 			
 			commentMap.put("commentList", commentList);
 			commentMap.put("totalCommentCnt", totalCommentCnt);
+			commentMap.put("avgStar", avgStar);
 			commentMap.put("pageMaker", pageMaker);
 			
 			entity = new ResponseEntity<Map<String, Object>>(commentMap, HttpStatus.OK);

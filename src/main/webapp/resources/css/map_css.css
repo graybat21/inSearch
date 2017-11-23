@@ -22,8 +22,46 @@ a:link, a:visited {
 	text-decoration: none; 
 }
 
-.comment-box {
+.block-comment {
     border: 1px solid #e5e5e5;
-    padding: 2rem;
-    margin-bottom: 25px;
+    padding: 1rem;
+    margin: 15px 0;
 }
+
+.pagination {
+    margin: 20px;
+}
+
+.pagination ul {
+	text-align: center;
+}
+
+.pagination ul li {
+	display: inline;
+	vertical-align: middle;
+}
+
+.pagination ul li a {
+	display: inline-block;
+	vertical-align: top;
+	padding: 3px 6px;
+	width: 15px !important;
+	color: #000;
+	border: 1px solid #eee;
+	text-align: center;
+	text-decoration: none;
+
+}
+
+.pagination ul li a.current {
+	color: #fff;
+	background-color: #87CEEB;
+	border: 1px solid #87CEEB;
+}
+
+.pagination ul li a:hover, .pagination ul li a:focus {
+	color: #fff;
+	border: 1px solid #87CEEB;
+	background-color: #87CEEB;
+}
+

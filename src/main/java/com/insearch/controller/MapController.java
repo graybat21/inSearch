@@ -89,45 +89,6 @@ public class MapController {
 		return mav;
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value = "registerStore", method = RequestMethod.POST) 
-//	public ResponseEntity<?> registerStore(@RequestBody StoreVO storeVo) {
-//		ResponseEntity<?> entity = null;
-//		
-//		int no;
-//		
-//		try {
-//			mapService.registerStore(storeVo);
-//			no = mapService.getStoreNo(storeVo);
-//			
-//			entity = new ResponseEntity<Integer>(no, HttpStatus.OK);
-//		}
-//		catch ( Exception e ) {
-//			e.printStackTrace();
-//			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//		}
-//		
-//		return entity;
-//	}
-//	
-//	@ResponseBody
-//	@RequestMapping(value = "registerComment", method = RequestMethod.POST) 
-//	public ResponseEntity<String> registerComment(@RequestBody EvaluationVO evaluationVo) {
-//		ResponseEntity<String> entity = null;
-//		
-//		try {
-//			mapService.registerComment(evaluationVo);
-//			
-//			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-//		}
-//		catch ( Exception e ) {
-//			e.printStackTrace();
-//			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//		}
-//		
-//		return entity;
-//	}
-	
 	private String jsonReadAll(Reader reader) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		int cp;

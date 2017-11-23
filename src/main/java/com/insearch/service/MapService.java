@@ -11,5 +11,6 @@ public interface MapService {
 	public void registerStore(StoreVO storeVo) throws Exception;
 	public void registerComment(EvaluationVO evaluationVo) throws Exception;
 	public int selectCommentCnt(int store_no) throws Exception;
+	public double selectAvgStar(int store_no) throws Exception;
 	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap);
 }

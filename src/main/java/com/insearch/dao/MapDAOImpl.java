@@ -40,6 +40,11 @@ public class MapDAOImpl implements MapDAO {
 	}
 	
 	@Override
+	public double selectAvgStar(int store_no) throws Exception {
+		return session.selectOne(namespace + ".selectAvgStar", store_no);
+	}
+	
+	@Override
 	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) {
 		return session.selectList(namespace + ".selectCommentList", commentMap);
 	}

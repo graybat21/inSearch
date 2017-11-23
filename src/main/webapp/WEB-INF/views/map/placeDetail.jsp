@@ -28,9 +28,9 @@
 	</div>
 	
 	<button type="button" id="submitComment" name="submitComment" title="Submit Comment">한줄평 등록</button>
-	
-	<div class="field-wrap" id="commentCount">
-		이 장소에 대하여 총 N개의 한줄평이 있습니다.
+
+	<div id="commentCount">
+
 	</div>
 	<div id="block-commentList">
 		<div class="comment-box">
@@ -40,10 +40,11 @@
 	<div class="pages pagination">
 			
 	</div>
-	
+
 <script id="template" type="text/x-handlebars-template">
 {{#each this}}
-<div class="block-content box">
+<div class="block-comment box">
+	<p style="text-align:left"><div id="star-{{this.star}}"></div></p>
 	<p style="text-align:left">{{this.comment}}</p>
 	<p style="text-align:right">작성자 : {{this.email}}****</p>
 	<p style="text-align:right">작성일 : {{prettifyDate this.createdate}}</p>
@@ -94,8 +95,7 @@ var printData = function (commentArr, target, templateObject) {
 	var template = Handlebars.compile(templateObject.html());
 	
 	var html = template(commentArr);
-	$(".comment-box").remove();
-	
+	$(".block-comment").remove();
 	target.after(html);
 };
 
@@ -103,8 +103,18 @@ function getPage(pageInfo) {
 	$.getJSON(pageInfo, function(data) {
 		printData(data.commentList, $("#block-commentList"), $("#template"));
 		
+		for ( var i = 1; i <= 5; i++ ) {
+			$('div#star-' + i).raty({
+				score: i,
+				path : "/images",
+				width : 200,
+				readOnly: true
+			});
+		}
+		
 		if ( data.commentList != '' ) {
-			//printPaging(data.pageMaker, $(".pagination"));
+			printCommentCnt(data.totalCommentCnt, data.avgStar, $("#commentCount"));
+			printPaging(data.pageMaker, $(".pagination"));
 		}
 	});
 }
@@ -123,28 +133,56 @@ Handlebars.registerHelper("prettifyDate", function(timeValue) {
 	return dformat;
 });
 
-var printPaging = function(pageMaker, target) {
-	var str = "<ol>";
-	
-	if ( pageMaker.prev )
-		str += "<li><a class='fa fa-angle-left' href='" + (pageMaker.start - 1) + "' title='Prev'></a></li>";
-	
-	for ( var i = pageMaker.start, len = pageMaker.end; i <= len; i++ ) {
-		var strClass = ( pageMaker.page == i ) ? "current" : "";
-		str += "<li><a class='" + strClass +"' href='" + i + "'>" + i + "</a></li>";
-	}
-		
-	if ( pageMaker.next )
-		str += "<li><a class='fa fa-angle-right' href='" + (pageMaker.end + 1) + "' title='Next'></a></li>";
-	
-	str += "</ol>";
+var printCommentCnt = function(totalCommentCnt, avgStar, target) {
+	var str = "<div class='field-wrap'>이 장소에 대하여 총 " + totalCommentCnt + "개의 한줄평이 작성되었습니다.</div>";
+	str += "<div class='field-wrap'>평균 별점 : " + avgStar + "</div>";
 	
 	target.html(str);
 };
 
-$(document).ready(function() { 
-	getPage("/comment/" + store_no + "/1"); 
+var printNoComment = function(target) {
+	var str = "<div class='field-wrap'>이 장소에 대한 한줄평이 없습니다.</div>";
+	
+	target.html(str);
+};
+
+var printPaging = function(pageMaker, target) {
+	var str = "<ul>";
+	
+	if ( pageMaker.prev ) {
+		str += "<li><a class='fa fa-angle-left' href='" + (pageMaker.start - 1) + "' title='Prev'>" + "<" + "</a></li>";
+	}
+	
+	for ( var i = pageMaker.start, len = pageMaker.end; i <= len; i++ ) {
+		var strClass = ( pageMaker.page == i ) ? "current" : "";
+		str += "<li><a class='" + strClass + "' href='" + i + "'>" + i + "</a></li>";
+	}
+		
+	if ( pageMaker.next ) {
+		str += "<li><a class='fa fa-angle-right' href='" + (pageMaker.end + 1) + "' title='Next'>" + ">" + "</a></li>";
+	}
+	
+	str += "</ul>";
+	
+	target.html(str);
+};
+
+$(document).ready(function() {
+	if ( store_no > 0 ) {
+		getPage("/comment/" + store_no + "/1");
+	}
+	else {
+		printNoComment($("#commentCount"));	
+	}
 }); 
+
+$(".pagination").on("click", "li a", function(event) {
+	event.preventDefault();
+	
+	replyPage = $(this).attr("href");
+	
+	getPage("/comment/" + store_no + "/" + replyPage);
+});
 
 $("#submitComment").on("click", function() {
 	var user_no =  $("#user_no").val();
@@ -205,4 +243,5 @@ $('div#starMap').raty({
 		$("#star").val(score);
 	}
 });
+
 </script>
