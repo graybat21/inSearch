@@ -76,6 +76,7 @@
 	<interceptors> 
 		<interceptor> 
 			<mapping path="/map/mapSearch" />
+			<mapping path="/update" />
 			<mapping path="/map/placeDetail/**" />
 			<beans:ref bean="authInterceptor" /> 
 		</interceptor> 

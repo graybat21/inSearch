@@ -11,6 +11,7 @@
 <div class="field-wrap" style="width:100%;">
 	<c:if test="${ email != null }">
 		로그인 유저: ${email}&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/logout">로그아웃</a>
+		<a href="/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/update">회원정보 수정</a>
 	</c:if>
 </div>

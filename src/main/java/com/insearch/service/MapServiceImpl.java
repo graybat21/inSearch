@@ -43,7 +43,7 @@ public class MapServiceImpl implements MapService {
 	}
 	
 	@Override
-	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) {
+	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) throws Exception {
 		return mapDao.selectCommentList(commentMap);
 	}
 }

@@ -33,6 +33,11 @@ public class MapDAOImpl implements MapDAO {
 	public void registerComment(EvaluationVO evaluationVo) throws Exception {
 		session.insert(namespace + ".registerComment", evaluationVo);
 	}
+	
+	@Override
+	public void deleteCommentByEmail(int user_no) throws Exception {
+		session.delete(namespace + ".deleteCommentByEmail", user_no);
+	}
 
 	@Override
 	public int selectCommentCnt(int store_no) throws Exception {
@@ -45,7 +50,7 @@ public class MapDAOImpl implements MapDAO {
 	}
 	
 	@Override
-	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) {
+	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) throws Exception {
 		return session.selectList(namespace + ".selectCommentList", commentMap);
 	}
 }

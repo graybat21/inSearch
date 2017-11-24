@@ -75,7 +75,7 @@ public class MapController {
 		storeVo.setLng(lng);
 		
 		String loginEmail = (String) session.getAttribute("email");
-		UserVO loginUser = userService.userLogin(loginEmail);
+		UserVO loginUser = userService.selectOneUser(loginEmail);
 		int userNo = loginUser.getNo();
 		
 		mav.addObject("storeVo", storeVo);

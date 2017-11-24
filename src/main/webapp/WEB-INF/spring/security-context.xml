@@ -13,13 +13,13 @@
 		<intercept-url pattern="/admin/login" access="permitAll"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<form-login login-page="/admin/login" login-processing-url="/admin/loginAuth" 
-			authentication-failure-url="/admin/login?login_error=1" default-target-url="/admin/main.do" />
+			authentication-failure-url="/admin/login?login_error=1" default-target-url="/admin/main" />
 		<session-management>
 			<concurrency-control
 				max-sessions="2" error-if-maximum-exceeded="true" />
 		</session-management>
 		<logout logout-url="/admin/logout"
-			logout-success-url="/admin/main.do" invalidate-session="true" />
+			logout-success-url="/admin/main" invalidate-session="true" />
 	</http>
 	
 	<authentication-manager>

@@ -31,9 +31,6 @@ public class CommentController {
 	@Inject
 	private MapService mapService;
 	
-	@Inject
-	private UserService userService;
-	
 	@RequestMapping(value = "registerStore", method = RequestMethod.POST) 
 	public ResponseEntity<?> registerStore(@RequestBody StoreVO storeVo) {
 		ResponseEntity<?> entity = null;
@@ -86,7 +83,6 @@ public class CommentController {
 			
 			pageMaker.setPage(page);
 
-			System.out.println("fffff");
 			int totalCommentCnt = mapService.selectCommentCnt(store_no);
 			double avgStar = mapService.selectAvgStar(store_no);
 			

@@ -24,11 +24,13 @@ public class UserDAOImpl implements UserDAO {
 		return userVO;
 	}
 
+	@Override
 	public int emailCheck(String email){
 		int result=session.selectOne("emailCheck",email);		
 		return result;
 	}
 	
+	@Override
 	public int emailAccept(String email,String emailflag){
 		HashMap<String, String> map=new HashMap<String, String>();
 		map.put("email",email);
@@ -39,31 +41,44 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 	
-	
+	@Override
 	public int join(UserVO userVO){
 		int result=session.insert("join", userVO);
 		return result;
 	}
 	
-	public UserVO userLogin(String email){
-		List<UserVO> userlist=session.selectList("userLogin", email);
-		UserVO userdto=new UserVO();
-		if(userlist.size()==1){
-			userdto=userlist.get(0);
-		}
-		return userdto;
+	@Override
+	public void update(UserVO userVO) {
+		session.update(namespace + ".update", userVO);
 	}
 	
+	@Override
+	public UserVO selectOneUser(String email){
+		return session.selectOne(namespace + ".selectOneUser", email);
+	}
+	
+	@Override
 	public int memberSecession(String email){
 		int result = session.delete("memberSecession",email);
 		return result;
 	}
 	
+	@Override
 	public int pwChange(String email,String pw){
 		HashMap<String, String> map=new HashMap<String, String>();
 		map.put("email",email);
 		map.put("pw", pw);
 		int result=session.update("pwChange",map);		
 		return result;
+	}
+
+	@Override
+	public int selectListCnt(HashMap<String, Object> map) {
+		return session.selectOne(namespace + ".selectListCnt", map);
+	}
+	
+	@Override
+	public List<UserVO> userList(HashMap<String, Object> map) {
+		return session.selectList(namespace + ".userList", map);
 	}
 }

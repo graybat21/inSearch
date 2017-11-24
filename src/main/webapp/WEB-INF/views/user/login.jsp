@@ -185,7 +185,7 @@ function passwordTypeCheck(passwordVal, passwordConfirmVal) {
 	var pwReg = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/g;
 	
 	if ( passwordVal == '' ) {
-		alert("비밀번호을 입력해주세요.");
+		alert("비밀번호를 입력해주세요.");
 		return false;
 	}
 	else if ( passwordConfirmVal == '' ) {

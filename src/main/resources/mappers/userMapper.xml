@@ -5,32 +5,68 @@
 	<select id="emailCheck" parameterType="String" resultType="int">
 		select count(email) from tb_user where email = #{email}
 	</select>
+	
 	<update id="emailAccept" parameterType="map">
 		update tb_user
 		set	emailflag = 'y' 
 		where email = #{email} and emailflag = #{emailflag}
 	</update>
+	
 	<insert id="join" parameterType="UserVO">
 		insert into tb_user 
-			(`pw`,`email`,`agerange`,`gender`,`emailflag`)
+			(`pw`, `email`, `agerange`, `gender`, `emailflag`)
 		VALUES
-			(#{pw},#{email},#{agerange},#{gender},#{emailflag})
+			(#{pw}, #{email}, #{agerange}, #{gender}, #{emailflag})
 	</insert>
-	<select id="userLogin" parameterType="String" resultType="UserVO">
-		select * from tb_user where
-		email = #{email}
+	
+	<select id="selectOneUser" parameterType="String" resultType="UserVO">
+		select * from tb_user 
+		where email = #{email}
 	</select>
+	
 	<select id="selectList" resultType="UserVO">
 		select * from tb_user
 	</select>
+	
 	<delete id="memberSecession" parameterType="String">
 		delete from tb_user where email = #{email}
 	</delete>
+	
+	<update id="update" parameterType="UserVO">
+		update tb_user 
+		set pw = #{pw}, gender = #{gender}, agerange = #{agerange}
+		where email = #{email}
+	</update>
+	
 	<update id="pwChange" parameterType="map">
 		update tb_user 
 		set pw = #{pw} 
 		where email = #{email}
 	</update>
+	
+	<select id="selectListCnt" resultType="int" parameterType="hashmap">
+ 		select count(*) from tb_user
+ 		<if test="searchKeyword != null || searchKeyword == ''">
+   		where email like '%#{searchKeyword}%'
+		</if>
+ 	</select>
+ 	
+ 	<select id="userList" resultType="UserVO" parameterType="hashmap">
+		select 
+			email, agerange, emailflag,
+			gender, createdate
+		from
+			(SELECT (@row_number:=@row_number+1) as row_number,
+					email, agerange, emailflag,
+					gender, createdate
+			from tb_user, (SELECT @row_number:=0) as t
+          	<if test="searchEmailKeyword != null || searchEmailKeyword == ''">
+    		where email like concat('%', #{searchEmailKeyword}, '%')
+  			</if>
+          	ORDER BY createdate DESC
+			) X 
+		where X.row_number between #{first} and #{last}
+	</select>
 
 </mapper>
 

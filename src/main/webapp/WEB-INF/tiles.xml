@@ -15,6 +15,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
+	<definition name="user/index/inSearch" template="/WEB-INF/views/user/index.jsp">
+	</definition>
+	
 	<!-- Admin base-definition -->
 	<definition name="layoutAdmin" template="/WEB-INF/views/include/layoutAdmin.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/include/headerAdmin.jsp" />

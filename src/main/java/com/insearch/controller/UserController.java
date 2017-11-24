@@ -40,7 +40,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView loginGo(HttpServletRequest request, HttpSession session) {
+	public ModelAndView loginForm(HttpServletRequest request, HttpSession session) {
 		logger.info("로그인화면 들어옴");
 		ModelAndView mav = new ModelAndView();
 		Cookie[] cks = request.getCookies();
@@ -71,7 +71,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		logger.info("로그아웃");
 
 		Cookie[] cks = request.getCookies();
@@ -105,15 +105,15 @@ public class UserController {
 		logger.info(userdto.getEmail() + " // " + userdto.getPw());
 		
 		ModelAndView mav = new ModelAndView();
-		UserVO userLogin = userService.userLogin(userdto.getEmail());
+		UserVO loginUser = userService.selectOneUser(userdto.getEmail());
 		
-		if ( userLogin.getEmail() == null ) {
+		if ( loginUser.getEmail() == null ) {
 			mav.addObject("msg", "가입하지 않은 이메일 입니다.");
 		} 
-		else if ( !(bcryptPasswordEncoder.matches(userdto.getPw(), userLogin.getPw())) ) {
+		else if ( !(bcryptPasswordEncoder.matches(userdto.getPw(), loginUser.getPw())) ) {
 			mav.addObject("msg", "비밀번호가 틀렸습니다.");
 		}
-		else if ( !(userLogin.getEmailflag().equals("y")) ) {
+		else if ( !(loginUser.getEmailflag().equals("y")) ) {
 			mav.addObject("msg", "이메일 인증을 완료하지 않았습니다.");
 		}
 		else {
@@ -146,7 +146,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public ModelAndView join(UserVO userdto, HttpServletRequest request) {
-		logger.info(userdto.getEmail() + " // " + userdto.getPw() + " // " + userdto.getGender() + " // "
+		logger.info(userdto.getEmail() + " // " + userdto.getGender() + " // "
 				+ userdto.getAgerange());
 		
 		ModelAndView mav = new ModelAndView();
@@ -163,10 +163,7 @@ public class UserController {
 		userdto.setEmailflag(emailflag);
 		
 		String pwd = userdto.getPw();
-		logger.info("패스워드 암호화 전"+pwd);
-		
 		String passwordSecret = bcryptPasswordEncoder.encode(pwd);			
-		logger.info("패스워드 암호화 확인1" + passwordSecret);
 		
 		userdto.setPw(passwordSecret);		
 		
@@ -230,9 +227,9 @@ public class UserController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		UserVO userLogin = userService.userLogin(email);
+		UserVO loginUser = userService.selectOneUser(email);
 		
-		if ( userLogin.getEmail() == null ) {
+		if ( loginUser.getEmail() == null ) {
 			mav.addObject("msg", "이메일을 잘못 입력하셨습니다.");
 		}
 		
@@ -272,23 +269,61 @@ public class UserController {
 		return mav;	
 	}
 	
-	
-	@RequestMapping(value="/memberSecession", method=RequestMethod.GET)
-	public ModelAndView memberSecession(HttpSession session) {
-		ModelAndView mav=new ModelAndView();
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ModelAndView updateForm(HttpServletRequest request, HttpSession session) {
+		ModelAndView mav = new ModelAndView("user/update/회원정보 수정");
 		
-		String email = (String) session.getAttribute("email");
+		String loginEmail = (String) session.getAttribute("email");
+		UserVO loginUser = userService.selectOneUser(loginEmail);
+		mav.addObject("loginUser", loginUser);
 		
-		int result = userService.memberSecession(email);
-		
-		if ( result > 0 ) {
-			logger.info("회원탈퇴 성공");
-		}
-		else {
-			logger.info("회원탈퇴 실패");
-		}
-		
-		mav.setViewName("user/login/login");
 		return mav;
-	}	
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ModelAndView update(UserVO userdto, HttpServletRequest request, 
+			HttpServletResponse response, HttpSession session) {
+		ModelAndView mav = new ModelAndView("user/updateSuccess/회원정보 수정 성공");
+		
+		String pwd = userdto.getPw();
+		String passwordSecret = bcryptPasswordEncoder.encode(pwd);			
+		
+		userdto.setPw(passwordSecret);		
+		userService.update(userdto);
+		
+		Cookie[] cks = request.getCookies();
+
+		if ( cks != null ) {
+			for ( int i = 0; i < cks.length; i++ ) {
+				if ( "insearch".equals(cks[i].getName()) ) {
+					cks[i].setMaxAge(0);
+					response.addCookie(cks[i]);
+					break;
+				}			
+			}	 
+		}
+		
+		session.removeAttribute("email");
+		
+		return mav;
+	}
+	
+//	@RequestMapping(value="/memberSecession", method=RequestMethod.GET)
+//	public ModelAndView memberSecession(HttpSession session) {
+//		ModelAndView mav=new ModelAndView();
+//		
+//		String email = (String) session.getAttribute("email");
+//		
+//		int result = userService.memberSecession(email);
+//		
+//		if ( result > 0 ) {
+//			logger.info("회원탈퇴 성공");
+//		}
+//		else {
+//			logger.info("회원탈퇴 실패");
+//		}
+//		
+//		mav.setViewName("user/login/login");
+//		return mav;
+//	}	
 }
