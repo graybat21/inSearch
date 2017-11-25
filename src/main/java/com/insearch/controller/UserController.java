@@ -32,7 +32,7 @@ public class UserController {
 	BCryptPasswordEncoder bcryptPasswordEncoder;	
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index() throws Exception {
 		logger.info("인덱스 들어옴");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("user/index/inSearch");
@@ -40,7 +40,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView loginForm(HttpServletRequest request, HttpSession session) {
+	public ModelAndView loginForm(HttpServletRequest request, HttpSession session) throws Exception {
 		logger.info("로그인화면 들어옴");
 		ModelAndView mav = new ModelAndView();
 		Cookie[] cks = request.getCookies();
@@ -71,7 +71,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+	public String logout(HttpServletRequest request, HttpServletResponse response, 
+			HttpSession session) throws Exception {
 		logger.info("로그아웃");
 
 		Cookie[] cks = request.getCookies();
@@ -91,7 +92,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/searchmap", method = RequestMethod.GET)
-	public ModelAndView searchmap() {
+	public ModelAndView searchmap() throws Exception {
 		logger.info("로그인 완료. 써치맵 이동 ");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/map/mapSearch");
@@ -100,14 +101,14 @@ public class UserController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(UserVO userdto, boolean autologin, 
-			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		logger.info("로그인 실행 전 자동로그인 체크 : " + autologin);
 		logger.info(userdto.getEmail() + " // " + userdto.getPw());
 		
 		ModelAndView mav = new ModelAndView();
 		UserVO loginUser = userService.selectOneUser(userdto.getEmail());
 		
-		if ( loginUser.getEmail() == null ) {
+		if ( loginUser == null ) {
 			mav.addObject("msg", "가입하지 않은 이메일 입니다.");
 		} 
 		else if ( !(bcryptPasswordEncoder.matches(userdto.getPw(), loginUser.getPw())) ) {
@@ -145,7 +146,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public ModelAndView join(UserVO userdto, HttpServletRequest request) {
+	public ModelAndView join(UserVO userdto, HttpServletRequest request) throws Exception {
 		logger.info(userdto.getEmail() + " // " + userdto.getGender() + " // "
 				+ userdto.getAgerange());
 		
@@ -185,7 +186,7 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/email", method = RequestMethod.POST)
-	public ModelAndView emailCheck(@RequestBody UserVO userdto) {
+	public ModelAndView emailCheck(@RequestBody UserVO userdto) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		logger.info("이메일 체크 들어옴 ");
 		
@@ -201,7 +202,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/emailAccept", method = RequestMethod.GET)
-	public ModelAndView emailAccept(UserVO userdto) {
+	public ModelAndView emailAccept(UserVO userdto) throws Exception {
 		logger.info("이메일 인증 들어옴 ");
 		logger.info(userdto.getEmail()+" // "+ userdto.getEmailflag());
 		
@@ -222,7 +223,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/pwChange_emailCheck", method = RequestMethod.GET)
-	public ModelAndView emailSend_emailCheck(String email){
+	public ModelAndView emailSend_emailCheck(String email) throws Exception {
 		logger.info("비밀번호 변경 전 이메일체크 들어옴");
 		
 		ModelAndView mav = new ModelAndView();
@@ -238,7 +239,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/pwChange", method = RequestMethod.GET)
-	public ModelAndView emailSend(String email, HttpSession session){
+	public ModelAndView emailSend(String email, HttpSession session) throws Exception {
 		logger.info("비밀번호 변경페이지로 이동 ");
 		
 		ModelAndView mav = new ModelAndView();
@@ -250,7 +251,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/pwChange", method=RequestMethod.POST)
-	public ModelAndView pwdChange(HttpSession session, String pw) {
+	public ModelAndView pwdChange(HttpSession session, String pw) throws Exception {
 		logger.info("비밀번호 변경 들어옴");
 		
 		ModelAndView mav = new ModelAndView();
@@ -270,7 +271,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView updateForm(HttpServletRequest request, HttpSession session) {
+	public ModelAndView updateForm(HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView("user/update/회원정보 수정");
 		
 		String loginEmail = (String) session.getAttribute("email");
@@ -282,7 +283,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView update(UserVO userdto, HttpServletRequest request, 
-			HttpServletResponse response, HttpSession session) {
+			HttpServletResponse response, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView("user/updateSuccess/회원정보 수정 성공");
 		
 		String pwd = userdto.getPw();
@@ -308,22 +309,29 @@ public class UserController {
 		return mav;
 	}
 	
-//	@RequestMapping(value="/memberSecession", method=RequestMethod.GET)
-//	public ModelAndView memberSecession(HttpSession session) {
-//		ModelAndView mav=new ModelAndView();
-//		
-//		String email = (String) session.getAttribute("email");
-//		
-//		int result = userService.memberSecession(email);
-//		
-//		if ( result > 0 ) {
-//			logger.info("회원탈퇴 성공");
-//		}
-//		else {
-//			logger.info("회원탈퇴 실패");
-//		}
-//		
-//		mav.setViewName("user/login/login");
-//		return mav;
-//	}	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(HttpServletRequest request, 
+			HttpServletResponse response, HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		String email = (String) session.getAttribute("email");
+	
+		Cookie[] cks = request.getCookies();
+	
+		if ( cks != null ) {
+			for ( int i = 0; i < cks.length; i++ ) {
+				if ( "insearch".equals(cks[i].getName()) ) {
+					cks[i].setMaxAge(0);
+					response.addCookie(cks[i]);
+					break;
+				}			
+			}	 
+		}
+		
+		session.removeAttribute("email");
+		userService.deleteUser(email);
+		
+		mav.setViewName("user/login/login");
+		return mav;
+	}	
 }

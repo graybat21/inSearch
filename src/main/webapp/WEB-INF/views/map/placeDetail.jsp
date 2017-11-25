@@ -8,7 +8,6 @@
 		<ul>
 			<li>${storeVo.name}</li>
 			<li>${storeVo.address}</li>
-			<li>${storeVo.lat} / ${storeVo.lng}</li>
 		</ul>
 	</div>
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -20,6 +19,10 @@
 	<input type="hidden" name="user_no" id="user_no" value="${userNo}" />
 	<input type="hidden" id="star" value="3"/>
 	
+	<div id="commentCount">
+
+	</div>
+	
 	<div class="field-wrap">
 		<input type="text" name="comment" id="comment" placeholder="한줄평을 입력해주세요(최대 150자까지 가능)." />
 	</div>
@@ -29,9 +32,6 @@
 	
 	<button type="button" id="submitComment" name="submitComment" title="Submit Comment">한줄평 등록</button>
 
-	<div id="commentCount">
-
-	</div>
 	<div id="block-commentList">
 		<div class="comment-box">
 		

@@ -126,11 +126,10 @@ $(document).ready(function() {
 function deleteUser(email) {
 	var result = confirm(email + "을 탈퇴시키겠습니까?");
 	
-	if ( result )
-	{
+	if ( result ) {
 		$.ajax({
 			type: 'post',
-			url: 'userDelete',
+			url: 'deleteUser',
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
 		    },

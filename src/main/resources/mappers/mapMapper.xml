@@ -18,6 +18,11 @@
     	values(#{store_no}, #{comment}, #{star}, #{user_no}, now())
 	</insert>
 	
+	<delete id="deleteCommentByEmail" parameterType="int">
+		delete from tb_evaluation
+		where user_no = #{user_no}
+	</delete>
+	
 	<select id="selectCommentCnt" parameterType="int" resultType="int">
 		select count(*) from tb_evaluation
 		where store_no = #{store_no}

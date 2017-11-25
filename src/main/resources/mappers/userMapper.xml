@@ -28,7 +28,7 @@
 		select * from tb_user
 	</select>
 	
-	<delete id="memberSecession" parameterType="String">
+	<delete id="deleteUser" parameterType="String">
 		delete from tb_user where email = #{email}
 	</delete>
 	
@@ -44,10 +44,15 @@
 		where email = #{email}
 	</update>
 	
+	<select id="getNo" resultType="int" parameterType="String">
+		select no from tb_user
+		where email = #{email}
+	</select>
+	
 	<select id="selectListCnt" resultType="int" parameterType="hashmap">
  		select count(*) from tb_user
  		<if test="searchKeyword != null || searchKeyword == ''">
-   		where email like '%#{searchKeyword}%'
+   		where email like concat('%', #{searchEmailKeyword}, '%')
 		</if>
  	</select>
  	

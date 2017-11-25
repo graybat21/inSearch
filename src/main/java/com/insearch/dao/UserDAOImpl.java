@@ -58,9 +58,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public int memberSecession(String email){
-		int result = session.delete("memberSecession",email);
-		return result;
+	public void deleteUser(String email) {
+		session.delete(namespace + ".deleteUser", email);
+	}
+	
+	@Override
+	public int getNo(String email) {
+		return session.selectOne(namespace + ".getNo", email);
 	}
 	
 	@Override

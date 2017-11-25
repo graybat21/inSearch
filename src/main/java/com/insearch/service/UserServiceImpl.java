@@ -1,12 +1,10 @@
 package com.insearch.service;
 
-
 import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,20 +18,23 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserDAO userDao;
 	
+	@Inject
+	private MapDAO mapDao;
+	
 	@Override
-	public UserVO selectList() {
+	public UserVO selectList() throws Exception {
 		UserVO userVO = userDao.selectList();
 		return userVO;
 	}
 	
 	@Override
-	public int emailCheck(String email){
+	public int emailCheck(String email) throws Exception {
 		int result=userDao.emailCheck(email);
 		return result;
 	}
 	
 	@Override
-	public int emailAccept(String email, String emailflag) {
+	public int emailAccept(String email, String emailflag) throws Exception {
 		HashMap<String, String> map=new HashMap<>();
 		map.put("email", email);
 		map.put("emailflag", emailflag);		
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public int join(UserVO userVO) {
+	public int join(UserVO userVO) throws Exception {
 		int result = userDao.join(userVO);
 		return result;
 	}
@@ -54,19 +55,22 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public UserVO selectOneUser(String email) {		
+	public UserVO selectOneUser(String email) throws Exception {
 		UserVO userdto = userDao.selectOneUser(email);		
 		return userdto;
 	}
 	
+	@Transactional
 	@Override
-	public int memberSecession(String email){
-		int result = userDao.memberSecession(email);
-		return result;
+	public void deleteUser(String email) throws Exception {
+		int user_no = userDao.getNo(email);
+		mapDao.deleteCommentByEmail(user_no);
+		
+		userDao.deleteUser(email);
 	}
 	
 	@Override
-	public int pwChange(String email,String pw){
+	public int pwChange(String email,String pw) throws Exception {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("email",email);
 		map.put("pw", pw);
@@ -76,20 +80,13 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
-//	@Transactional
-//	@Override
-//	public void delete(UserVO userdto) throws Exception {
-//		reviewDao.deleteCommentByEmail(user_no);
-//		userDao.delete(email);
-//	}
-	
 	@Override
-	public int selectListCnt(HashMap<String, Object> map) {
+	public int selectListCnt(HashMap<String, Object> map) throws Exception {
 		return userDao.selectListCnt(map);
 	}
 	
 	@Override
-	public List<UserVO> userList(HashMap<String, Object> map) {
+	public List<UserVO> userList(HashMap<String, Object> map) throws Exception {
 		return userDao.userList(map);
 	}
 }

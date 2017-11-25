@@ -7,10 +7,14 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.insearch.config.PageMaker;
@@ -77,5 +81,25 @@ public class AdminController {
 		return mav;
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value = "deleteUser", method = RequestMethod.POST)
+	public ResponseEntity<String> deleteUser(@RequestBody UserVO userdto) throws Exception {
+		
+		ResponseEntity<String> entity = null;
+		
+		try 
+		{
+			String email = userdto.getEmail();
+			logger.info("DELETE TO E-mail = " + email);
+			userService.deleteUser(email);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		}
+		catch ( Exception e ) 
+		{
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 }
