@@ -309,12 +309,20 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView delete(HttpServletRequest request, 
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ModelAndView delete(UserVO userdto, HttpServletRequest request, 
 			HttpServletResponse response, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
-		String email = (String) session.getAttribute("email");
+		String loginEmail = (String) session.getAttribute("email");
+		UserVO loginUser = userService.selectOneUser(loginEmail);
+		
+		String email = userdto.getEmail();
+		
+		if ( !(bcryptPasswordEncoder.matches(userdto.getPw(), loginUser.getPw())) ) {
+			mav.setViewName("user/deleteFail/회원탈퇴 실패");
+			return mav;
+		}
 	
 		Cookie[] cks = request.getCookies();
 	
@@ -331,7 +339,7 @@ public class UserController {
 		session.removeAttribute("email");
 		userService.deleteUser(email);
 		
-		mav.setViewName("user/login/login");
+		mav.setViewName("user/deleteSuccess/회원 탈퇴");
 		return mav;
 	}	
 }

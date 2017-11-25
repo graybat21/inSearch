@@ -61,14 +61,6 @@
 		<beans:property name="order" value="1" />
 	</beans:bean>
 
-	<!-- MultipartResolver -->
-	<!--beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
-		<beans:property name="maxUploadSize" value="10485760"></beans:property> </beans:bean -->
-
-	<!-- UploadPath -->
-	<!--beans:bean id="uploadPath" class="java.lang.String"> <beans:constructor-arg 
-		value="${upload_path}"></beans:constructor-arg> </beans:bean -->
-
 	<!-- Interceptor -->
 	<beans:bean id="loginInterceptor" class="com.insearch.interceptor.LoginInterceptor"></beans:bean> 
 	<beans:bean id="authInterceptor" class="com.insearch.interceptor.AuthInterceptor"></beans:bean>

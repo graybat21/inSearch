@@ -43,32 +43,9 @@
 		</property>
 	</bean>
 
-	<!-- Form 검증 관련 Bean 등록 -->
-	<!--bean id="loginValidator" class="com.ustyle.utils.LoginValidator" />
-	<bean id="userEntryValidator" class="com.ustyle.utils.UserEntryValidator" />
-	<bean id="productUploadValidator" class="com.ustyle.utils.ProductUploadValidator" /-->
-
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
-	<!-- email -->
-	<bean id="javaMailSenderImpl" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="username" value="insearch1234567@gmail.com" />
-		<property name="password" value="oracle111" />
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.required">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-				<prop key="mail.smtp.socketFactory.fallback">false</prop>
-				<prop key="mail.smtp.port">465</prop>
-				<prop key="mail.smtp.socketFactory.port">465</prop>
-				<!-- <prop key="mail.transport.protocol">smtps</prop> -->
-			</props>
-		</property>
-	</bean>
+	
 </beans>

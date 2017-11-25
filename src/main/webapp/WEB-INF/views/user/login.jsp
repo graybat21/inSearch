@@ -153,7 +153,7 @@ function changepage(check) {
 		}
 	}
 	else {
-		if ( document.getElementById("forgotPwd").style.display == "none") {
+		if ( document.getElementById("forgotPwd").style.display == "none" ) {
 			document.getElementById("login").style.display = "none";
 			document.getElementById("forgotPwd").style.display = "block";
 		}

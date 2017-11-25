@@ -47,7 +47,31 @@
 						</select>
 				</div>
 			</div>
+			
+			<div class="field-wrap">
+				<ul class="tab-group">
+					<li class="tab"><a onclick="changepage()">Delete</a></li>
+				</ul>
+			</div>
+			
 			<button type="button" onclick="updateCheck()" class="button button-block">Update</button>
+		</form>
+	</div>
+	<div id="delete" style="display:none;">
+		<form name="deleteForm" action="delete" method="post">	
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<input type="hidden" name="email" value="${loginUser.email}" />	
+			<div class="field-wrap">
+				<label> Set A Password<span class="req">*</span>
+				</label> <input type="password" required autocomplete="off" name="pw" />
+			</div>
+			<div class="field-wrap">
+				<ul class="tab-group">
+					<li class="tab"><a onclick="changepage()">Update</a></li>
+				</ul>
+			</div>
+			
+			<button type="button" onclick="deleteCheck()" class="button button-block">Delete</button>
 		</form>
 	</div>
 </div>
@@ -86,6 +110,17 @@ $('.form').find('input, textarea').on('keyup blur focus', function(e) {
 	}
 });
 
+function changepage() {
+	if ( document.getElementById("update").style.display == "none" ) {		
+		document.getElementById("delete").style.display = "none";
+		document.getElementById("update").style.display = "block";
+	}
+	else {		
+		document.getElementById("update").style.display = "none";
+		document.getElementById("delete").style.display = "block";
+	}
+}
+
 function passwordTypeCheck(passwordVal, passwordConfirmVal) {
 	
 	var pwReg = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/g;
@@ -122,15 +157,23 @@ function updateCheck() {
 		return;
 	}
 	else if ( gender == 0 ) {
-		alert("성별을 선택해주세요");
+		alert("성별을 선택해주세요.");
 		return;
 	}
 	else if ( age == 0 ) {
-		alert("연령대를 선택해주세요");
+		alert("연령대를 선택해주세요.");
 		return;
 	} 
 	else {
 		document.updateForm.submit();
+	}
+}
+
+function deleteCheck(email) {
+	var result = confirm("탈퇴하겠습니까? 탈퇴하면 그동안 작성했던 한줄평이 모두 삭제됩니다.");
+	
+	if ( result ) {
+		document.deleteForm.submit();
 	}
 }
 </script>
