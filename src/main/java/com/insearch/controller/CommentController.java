@@ -76,22 +76,22 @@ public class CommentController {
 		{
 			PageMaker pageMaker = new PageMaker();
 			
-			int pagecnt = 5;		// 상세페이지를 로드할 때, 가장 최근에 작성한 다섯개의 리뷰만 보여지도록 함.
+			int pagecnt = 5;		// 한줄평을 로드할 때, 가장 최근에 작성한 다섯 개의 한줄평만 보여지도록 함.
 			int countPerPaging = 10;
 			int start = (page - 1) * pagecnt;
 			
 			pageMaker.setPage(page);
+			
+			HashMap<String, Object> commentMap = new HashMap<>();
+			commentMap.put("store_no", store_no);
 
-			int totalCommentCnt = mapService.selectCommentCnt(store_no);
+			int totalCommentCnt = mapService.selectCommentCnt(commentMap);
 			double avgStar = mapService.selectAvgStar(store_no);
 			
 			logger.info("totalCommentCnt = " + totalCommentCnt);
 			logger.info("avgStar = " + avgStar);
 			pageMaker.setCount(totalCommentCnt, pagecnt, countPerPaging);
 			
-			HashMap<String, Object> commentMap = new HashMap<>();
-			
-			commentMap.put("store_no", store_no);
 			commentMap.put("start", start);
 			commentMap.put("pagecnt", pagecnt);
 			

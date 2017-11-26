@@ -23,7 +23,7 @@
 	</div>
 	<div class="field-wrap">
     <input name="address" id="address" type="text" value="Seoul City Hall">   
-    <input type="button" value="검색" onclick="codeAddress()">
+    <input type="button" id="buttonForSearch" value="검색" onclick="codeAddress()">
     </div>
 </div>   
 <div id="r"></div>    
@@ -38,6 +38,12 @@ var marker;
 var markers = [];
 var myCity;
 var infowindow;
+
+$("#address").keyup(function(event) {
+    if ( event.keyCode === 13 ) {
+        $("#buttonForSearch").click();
+    }
+});
   
 function initialize() {
     geocoder = new google.maps.Geocoder(); 

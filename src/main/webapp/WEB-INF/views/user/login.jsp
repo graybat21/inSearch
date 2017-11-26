@@ -8,12 +8,12 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 		
 				<div class="field-wrap">
 					<label> Email Address<span class="req">*</span></label>
-					<input type="email" required autocomplete="off" name="email" />
+					<input type="email" required autocomplete="off" name="email" id="emailForLogin" />
 				</div>
 				
 				<div class="field-wrap">
 					<label> Password<span class="req">*</span></label>
-					<input type="password" required autocomplete="off" name="pw" />
+					<input type="password" required autocomplete="off" name="pw" id="pwForLogin" />
 				</div>
 				
 				<div class="field-wrap">
@@ -27,7 +27,7 @@
 					</ul>
 				</div>
 
-				<button type="button" class="button button-block"
+				<button type="button" id="buttonForLogin" class="button button-block"
 					onclick="login_email()">Log In</button>
 			</form>
 		</div>
@@ -111,6 +111,18 @@
 
 var header = $("meta[name='_csrf_header']").attr("content");
 var token = $("meta[name='_csrf']").attr("content");
+
+$("#emailForLogin").keyup(function(event) {
+    if ( event.keyCode === 13 ) {
+        $("#buttonForLogin").click();
+    }
+});
+
+$("#pwForLogin").keyup(function(event) {
+    if ( event.keyCode === 13 ) {
+        $("#buttonForLogin").click();
+    }
+});
 
 $('.form').find('input, textarea').on('keyup blur focus', function(e) {
 	var $this = $(this), label = $this.prev('label');

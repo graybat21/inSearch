@@ -28,6 +28,13 @@ a:link, a:visited {
     margin: 15px 0;
 }
 
+.comment-contents {
+	text-align: left;
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	white-space: nowrap;
+}
+
 .pagination {
     margin: 20px;
 }

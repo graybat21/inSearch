@@ -33,8 +33,8 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public int selectCommentCnt(int store_no) throws Exception {
-		return mapDao.selectCommentCnt(store_no);
+	public int selectCommentCnt(HashMap<String, Object> map) throws Exception {
+		return mapDao.selectCommentCnt(map);
 	}
 	
 	@Override
@@ -43,7 +43,27 @@ public class MapServiceImpl implements MapService {
 	}
 	
 	@Override
+	public int selectStoreListCnt(HashMap<String, Object> map) throws Exception {
+		return mapDao.selectStoreListCnt(map);
+	}
+	
+	@Override
+	public StoreVO selectOneStore(int store_no) throws Exception {
+		return mapDao.selectOneStore(store_no);
+	}
+	
+	@Override
+	public List<StoreVO> selectStoreList(HashMap<String, Object> map) throws Exception {
+		return mapDao.selectStoreList(map);
+	}
+	
+	@Override
 	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) throws Exception {
 		return mapDao.selectCommentList(commentMap);
+	}
+	
+	@Override
+	public void deleteComment(int evaluation_no) throws Exception {
+		mapDao.deleteComment(evaluation_no);
 	}
 }

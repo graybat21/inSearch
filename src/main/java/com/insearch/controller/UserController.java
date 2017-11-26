@@ -109,7 +109,7 @@ public class UserController {
 		UserVO loginUser = userService.selectOneUser(userdto.getEmail());
 		
 		if ( loginUser == null ) {
-			mav.addObject("msg", "가입하지 않은 이메일 입니다.");
+			mav.addObject("msg", "가입하지 않은 이메일입니다.");
 		} 
 		else if ( !(bcryptPasswordEncoder.matches(userdto.getPw(), loginUser.getPw())) ) {
 			mav.addObject("msg", "비밀번호가 틀렸습니다.");

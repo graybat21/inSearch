@@ -45,8 +45,8 @@
 {{#each this}}
 <div class="block-comment box">
 	<p style="text-align:left"><div id="star-{{this.star}}"></div></p>
-	<p style="text-align:left">{{this.comment}}</p>
-	<p style="text-align:right">작성자 : {{this.email}}****</p>
+	<p class="comment-contents">{{this.comment}}</p>
+	<p style="text-align:right">작성자 : {{trimString this.email}}****</p>
 	<p style="text-align:right">작성일 : {{prettifyDate this.createdate}}</p>
 </div>
 {{else}}
@@ -133,6 +133,11 @@ Handlebars.registerHelper("prettifyDate", function(timeValue) {
 	return dformat;
 });
 
+Handlebars.registerHelper('trimString', function(passedString) {
+   	var theString = passedString.substring(0, 4);
+   	return new Handlebars.SafeString(theString);
+});
+
 var printCommentCnt = function(totalCommentCnt, avgStar, target) {
 	var str = "<div class='field-wrap'>이 장소에 대하여 총 " + totalCommentCnt + "개의 한줄평이 작성되었습니다.</div>";
 	str += "<div class='field-wrap'>평균 별점 : " + avgStar + "</div>";
@@ -174,7 +179,13 @@ $(document).ready(function() {
 	else {
 		printNoComment($("#commentCount"));	
 	}
-}); 
+});
+
+$("#comment").keyup(function(event) {
+    if ( event.keyCode === 13 ) {
+        $("#submitComment").click();
+    }
+});
 
 $(".pagination").on("click", "li a", function(event) {
 	event.preventDefault();
