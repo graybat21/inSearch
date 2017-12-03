@@ -11,10 +11,9 @@ public interface UserDAO {
 	public int join(UserVO userVO);
 	public void update(UserVO userVO);
 	public UserVO selectOneUser(String email);
-	public UserVO selectList();	     
 	public void deleteUser(String email);
 	public int getNo(String email);
 	public int pwChange(String email, String passwordSecret);        
-	public int selectListCnt(HashMap<String, Object> map);
-	public List<UserVO> userList(HashMap<String, Object> map);
+	public int selectUserListCnt(HashMap<String, Object> map);
+	public List<UserVO> selectUserList(HashMap<String, Object> map);
 }

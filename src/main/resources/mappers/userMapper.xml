@@ -24,10 +24,6 @@
 		where email = #{email}
 	</select>
 	
-	<select id="selectList" resultType="UserVO">
-		select * from tb_user
-	</select>
-	
 	<delete id="deleteUser" parameterType="String">
 		delete from tb_user where email = #{email}
 	</delete>
@@ -49,14 +45,14 @@
 		where email = #{email}
 	</select>
 	
-	<select id="selectListCnt" resultType="int" parameterType="hashmap">
+	<select id="selectUserListCnt" resultType="int" parameterType="hashmap">
  		select count(*) from tb_user
  		<if test="searchKeyword != null || searchKeyword == ''">
    		where email like concat('%', #{searchEmailKeyword}, '%')
 		</if>
  	</select>
  	
- 	<select id="userList" resultType="UserVO" parameterType="hashmap">
+ 	<select id="selectUserList" resultType="UserVO" parameterType="hashmap">
 		select 
 			email, agerange, emailflag,
 			gender, createdate

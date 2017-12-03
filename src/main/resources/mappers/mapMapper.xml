@@ -23,26 +23,78 @@
 		where user_no = #{user_no}
 	</delete>
 	
-	<select id="selectCommentCnt" parameterType="int" resultType="int">
-		select count(*) from tb_evaluation
-		where store_no = #{store_no}
+	<select id="selectCommentCnt" parameterType="hashmap" resultType="int">
+		select 
+			count(*)
+		from 
+			tb_evaluation as e, tb_user as u
+		where 
+			e.user_no = u.no and e.store_no = #{store_no}
+			<if test="searchKeyword != null || searchKeyword == ''">
+				<if test="searchType == 'email'">
+	   				and u.email like concat('%', #{searchKeyword}, '%')
+	   			</if>
+	   			<if test="searchType == 'comment'">
+	   				and e.comment like concat('%', #{searchKeyword}, '%')
+	   			</if>
+			</if>
 	</select>
 	
 	<select id="selectAvgStar" parameterType="int" resultType="double">
-		select round(avg(star), 2) from tb_evaluation
+		select COALESCE(round(avg(star), 2), 0) from tb_evaluation
 		where store_no = #{store_no}
 	</select>
 	
 	<select id="selectCommentList" parameterType="hashmap" resultType="hashmap">
 		select 
-			substring(u.email, 1, 4) as email, e.comment as comment, e.createdate as createdate, e.star as star
+			e.no as no, u.email as email, e.comment as comment, e.createdate as createdate, e.star as star
 		from 
 			tb_evaluation as e, tb_user as u
 		where 
-			e.user_no = u.no and store_no = #{store_no}
+			e.user_no = u.no and e.store_no = #{store_no}
+			<if test="searchKeyword != null || searchKeyword == ''">
+				<if test="searchType == 'email'">
+	   				and u.email like concat('%', #{searchKeyword}, '%')
+	   			</if>
+	   			<if test="searchType == 'comment'">
+	   				and e.comment like concat('%', #{searchKeyword}, '%')
+	   			</if>
+			</if>
 			order by e.no desc
 			limit #{start}, #{pagecnt}
 	</select>
+	
+	<select id="selectStoreListCnt" resultType="int" parameterType="hashmap">
+ 		select count(*) from tb_store
+ 		<if test="searchStoreKeyword != null || searchStoreKeyword == ''">
+   		where name like concat('%', #{searchStoreKeyword}, '%')
+		</if>
+ 	</select>
+ 	
+ 	<select id="selectOneStore" parameterType="int" resultType="StoreVO">
+		select * from tb_store
+		where no = #{store_no}
+	</select>
+ 	
+ 	<select id="selectStoreList" resultType="StoreVO" parameterType="hashmap">
+		select 
+			no, name, address, lat, lng, createdate
+		from
+			(SELECT (@row_number:=@row_number+1) as row_number,
+					no, name, address, lat, lng, createdate
+			from tb_store, (SELECT @row_number:=0) as t
+          	<if test="searchStoreKeyword != null || searchStoreKeyword == ''">
+    		where name like concat('%', #{searchStoreKeyword}, '%')
+  			</if>
+          	ORDER BY createdate DESC
+			) X 
+		where X.row_number between #{first} and #{last}
+	</select>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from tb_evaluation
+		where no = #{evaluation_no}
+	</delete>
 
 </mapper>
 

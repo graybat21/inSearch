@@ -17,33 +17,27 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession session;
 
-	
-	@Override
-	public UserVO selectList() {
-		UserVO userVO = (UserVO) session.selectOne("selectList");
-		return userVO;
-	}
-
 	@Override
 	public int emailCheck(String email){
-		int result=session.selectOne("emailCheck",email);		
+		int result = session.selectOne(namespace + ".emailCheck", email);		
 		return result;
 	}
 	
 	@Override
 	public int emailAccept(String email,String emailflag){
-		HashMap<String, String> map=new HashMap<String, String>();
-		map.put("email",email);
-		map.put("emailflag",emailflag);		
-		System.out.println(map.get("email")+" // "+map.get("emailflag"));
-		int result=session.update("emailAccept",map);
-		System.out.println(result);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", email);
+		map.put("emailflag", emailflag);
+		
+		System.out.println(map.get("email") + " // " + map.get("emailflag"));
+		
+		int result = session.update(namespace + ".emailAccept", map);
 		return result;
 	}
 	
 	@Override
 	public int join(UserVO userVO){
-		int result=session.insert("join", userVO);
+		int result = session.insert(namespace + ".join", userVO);
 		return result;
 	}
 	
@@ -69,20 +63,21 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public int pwChange(String email,String pw){
-		HashMap<String, String> map=new HashMap<String, String>();
-		map.put("email",email);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", email);
 		map.put("pw", pw);
-		int result=session.update("pwChange",map);		
+		
+		int result = session.update(namespace + ".pwChange", map);		
 		return result;
 	}
 
 	@Override
-	public int selectListCnt(HashMap<String, Object> map) {
-		return session.selectOne(namespace + ".selectListCnt", map);
+	public int selectUserListCnt(HashMap<String, Object> map) {
+		return session.selectOne(namespace + ".selectUserListCnt", map);
 	}
 	
 	@Override
-	public List<UserVO> userList(HashMap<String, Object> map) {
-		return session.selectList(namespace + ".userList", map);
+	public List<UserVO> selectUserList(HashMap<String, Object> map) {
+		return session.selectList(namespace + ".selectUserList", map);
 	}
 }

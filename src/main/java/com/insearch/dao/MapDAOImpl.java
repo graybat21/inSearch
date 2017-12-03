@@ -40,8 +40,8 @@ public class MapDAOImpl implements MapDAO {
 	}
 
 	@Override
-	public int selectCommentCnt(int store_no) throws Exception {
-		return session.selectOne(namespace + ".selectCommentCnt", store_no);
+	public int selectCommentCnt(HashMap<String, Object> map) throws Exception {
+		return session.selectOne(namespace + ".selectCommentCnt", map);
 	}
 	
 	@Override
@@ -50,7 +50,27 @@ public class MapDAOImpl implements MapDAO {
 	}
 	
 	@Override
+	public int selectStoreListCnt(HashMap<String, Object> map) throws Exception {
+		return session.selectOne(namespace + ".selectStoreListCnt", map);
+	}
+	
+	@Override
+	public StoreVO selectOneStore(int store_no) throws Exception {
+		return session.selectOne(namespace + ".selectOneStore", store_no);
+	}
+	
+	@Override
+	public List<StoreVO> selectStoreList(HashMap<String, Object> map) throws Exception {
+		return session.selectList(namespace + ".selectStoreList", map);
+	}
+	
+	@Override
 	public List<HashMap<String, Object>> selectCommentList(HashMap<String, Object> commentMap) throws Exception {
 		return session.selectList(namespace + ".selectCommentList", commentMap);
+	}
+	
+	@Override
+	public void deleteComment(int evaluation_no) throws Exception {
+		session.delete(namespace + ".deleteComment", evaluation_no);
 	}
 }

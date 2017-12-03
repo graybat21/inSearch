@@ -22,14 +22,8 @@ public class UserServiceImpl implements UserService {
 	private MapDAO mapDao;
 	
 	@Override
-	public UserVO selectList() throws Exception {
-		UserVO userVO = userDao.selectList();
-		return userVO;
-	}
-	
-	@Override
 	public int emailCheck(String email) throws Exception {
-		int result=userDao.emailCheck(email);
+		int result = userDao.emailCheck(email);
 		return result;
 	}
 	
@@ -65,7 +59,6 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(String email) throws Exception {
 		int user_no = userDao.getNo(email);
 		mapDao.deleteCommentByEmail(user_no);
-		
 		userDao.deleteUser(email);
 	}
 	
@@ -76,17 +69,16 @@ public class UserServiceImpl implements UserService {
 		map.put("pw", pw);
 		
 		int result = userDao.pwChange(email, pw);
-		
 		return result;
 	}
 	
 	@Override
-	public int selectListCnt(HashMap<String, Object> map) throws Exception {
-		return userDao.selectListCnt(map);
+	public int selectUserListCnt(HashMap<String, Object> map) throws Exception {
+		return userDao.selectUserListCnt(map);
 	}
 	
 	@Override
-	public List<UserVO> userList(HashMap<String, Object> map) throws Exception {
-		return userDao.userList(map);
+	public List<UserVO> selectUserList(HashMap<String, Object> map) throws Exception {
+		return userDao.selectUserList(map);
 	}
 }
