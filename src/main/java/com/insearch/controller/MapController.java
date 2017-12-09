@@ -45,13 +45,19 @@ public class MapController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/map2Search", method = RequestMethod.GET)
+	public ModelAndView map2() throws Exception {
+		ModelAndView mav = new ModelAndView("map/map2/장소 검색");
+		logger.info("MAP2 TEST");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/placeDetail/{placeId}", method = RequestMethod.GET)
 	public ModelAndView placeDetail(@PathVariable("placeId") String placeId,
 			HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView("map/placeDetail/장소 상세");
-		
 		String detailsUrl = "https://maps.googleapis.com/maps/api/place/details/json"
-				+ "?placeid=" + placeId + "&language=ko-KR&key=AIzaSyDAZo3REaAB8Ev8AhAsaaB3XgKVTrrA8Es";
+				+ "?placeid=" + placeId + "&key=AIzaSyDAZo3REaAB8Ev8AhAsaaB3XgKVTrrA8Es";
 		
 		JSONObject jsonPlaceObject = readJsonFromUrl(detailsUrl).getJSONObject("result");
 		StoreVO storeVo = new StoreVO();
