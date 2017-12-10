@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+div {
+	color: grey;
+}
+</style>
 <body onload="logingo()">
 	<div class="form">		
 		<h3>이메일 인증이 완료되었습니다.</h3>

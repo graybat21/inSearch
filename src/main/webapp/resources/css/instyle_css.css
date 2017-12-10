@@ -1,6 +1,73 @@
 @CHARSET "UTF-8";
-h1 { font-size: 90px; 
-    font-family: 'Droid Serif', serif; 
+
+body{
+	background-color:whitesmoke;
+}     
+.header{
+	background-color:darkgray;	
+	min-height:50px;
+}	
+.header_info{
+	float:right;
+	padding-right:20px;
+	margin-top:15px;
+	color:whitesmoke;		
+}
+#detail{
+	color:grey !important;	
+}
+#review{
+	font-family: 'Nanum Pen Script', cursive;
+	color:grey;
+}
+#starMap{	
+	float: left;
+	width: 110px !important;	
+	padding:5px !important;
+}
+#header_login{
+	margin-left:5px;
+	color:whitesmoke !important;
+}
+
+
+#submitComment{
+	float:right;
+	margin-right:5px;
+	color : whitesmoke;
+	background-color: darkgrey;
+	font-size:20px; 
+	font-family: 'Nanum Pen Script', cursive;
+	width:130px; 
+}
+#comment{
+	max-width: 800px !important;;
+	
+}
+.header_info a:visit{
+	margin-left:5px;
+	
+}
+
+a:link, a:visited { 
+	color:whitesmoke;	
+	text-decoration: none; 
+}
+
+
+
+ h4 { font-family: 'Nanum Pen Script', cursive; 
+	 color:whitesmoke; 
+	 font-size:40px;
+	 float:left;
+	 padding-left:20px;	 
+	 margin:0px 0 0 0;
+ }
+
+h1 { 
+	color:darkgrey;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 90px;    
     line-height: 75px; padding: 10px; 
     -webkit-transition-property: font-size;
     -moz-transition-property: font-size;
@@ -25,8 +92,8 @@ h2 { font-family: 'Helvetica'; font-size: 18px; padding: 10px;
     -moz-transition-timing function: linear, ease-in; 
     transition-timing function: linear, ease-in;
 }
-h3 { font-family: 'Droid Serif', serif; font-size: 30px; }
-h4 { font-family: 'Droid Serif', serif; padding: 3px; margin: 5px 0 0 0; }
+h3 { font-family: 'Helvetica'; font-size: 30px; }
+
 h4 a { text-decoration: underline; }
 h4 a:hover { text-decoration: none; }
 nav {padding: 0; margin: 10px 0;}
@@ -59,16 +126,69 @@ ul li { margin: 0 5px; display: inline;}
 footer { padding: 5px; }    
 
 @media screen and (max-width: 478px) {
-    h1 { font-size: 70px; padding: 1px; }
-    h2 { font-size: 13px; padding: 1px; }
-    body { font-size: 13px; }
+	h1 {
+		font-size: 70px;
+		padding: 1px;
+	}
+	h2 {
+		font-size: 13px;
+		padding: 1px;
+	}
+	body {
+		font-size: 13px;
+	}
+	h4 {
+		font-size: 30px;
+	}
+	.header {
+		min-height: 35px;
+	}
+	#address {
+		margin-left: 10px !important;
+		float: left !important;
+		max-width: 230px !important;
+		font-size: 18px !important;
+	}
+	select{
+		font-size:15px !important;
+	}
+	input[type="email"], input[type="password"], input[type="text"], textarea {
+		font-size: 19px !important;
+		max-width: 264px !important;
+		width: 93% !important;
+	}
+	label{
+		font-size:15px !important;
+	}
+	.field-auto {  		
+  		margin: 10px 0 !important;
+  		font-size:1px !important;
+	}
+	#comment{
+		font-size:15px !important;
+		max-width: 360px !important;
+		width: 93% !important;
+	}
+	#submitComment{
+		font-size:20px !important;
+	}
+	#commentCount{
+	display: inline-flex !important;
+	}
+	
 }
- 
+#review_box{
+	color:grey;	
+}
 @media screen and (max-width: 740px) {
     .left-col { width: 100%; }
     .sidebar { width: 100%; }
 }
  
+#r li a{
+	color:darkgrey;
+	text-decoration: darkgrey underline;
+} 
 img {
     max-width: 100%;
     height: auto;
@@ -172,6 +292,7 @@ h1 {
 }
 
 label {
+	color:darkgrey;
   position:absolute;
   transform:translateY(6px);
   left:13px;
@@ -202,14 +323,20 @@ label.highlight {
 .labeloption2{
 	position:static;
 	padding-left: 10px;
+	font-weight:bold;
 }
 
+#place_each li{
+	border-bottom: 1px solid lightgrey !important;
+	margin-left:10px;
+	margin-right:10px;
+}
 
 input[type="email"], input[type="password"], input[type="text"], textarea {
   font-size:22px;
   display:block;
-  max-width:576px !important;
-  width:100%;
+  max-width:600px !important;  
+  width:96%;
   height:100%;
   padding:5px 10px;
   background:none;
@@ -218,6 +345,7 @@ input[type="email"], input[type="password"], input[type="text"], textarea {
   color:$white;
   border-radius:0;
   transition:border-color .25s ease, box-shadow .25s ease;
+  margin-right:5px;
   &:focus {
 		outline:0;
 		border-color:$main;
@@ -230,9 +358,29 @@ textarea {
 }
 
 select{
-	font-size:22px;
+	margin-left:10px;
+	font-size:20px;
+	border-radius:5px;
+	padding-bottom: 5px;
+	outline-style: none;
+}
+
+#address{
+	margin-left:10px !important;
+	float:left !important;
+}
+#buttonForSearch{
+	margin-left:5px;
+	color : whitesmoke;
+	background-color: darkgrey;
+	font-size:27px; 
+	font-family: 'Nanum Pen Script', cursive; 
 }
 .field-wrap {
+  position:relative;
+  margin: 30px 0;
+}
+.field-auto {
   position:relative;
   margin: 30px 0;
 }
@@ -255,7 +403,7 @@ select{
 }
 
 .button {
-	background:black;
+	background:darkgrey;
 	color:white;
   border:0;
   outline:none;

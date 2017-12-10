@@ -3,6 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 <link href="${myContextPath}/css/map_css.css" rel="stylesheet" type="text/css" />
+<style>
+div a{
+	color:grey !important;
+	font-weight: bold;
+}
+</style>
 <div id="map" style="height: 100%">   
 <div>
 	<div class="field-wrap">
@@ -23,7 +29,7 @@
 	</div>
 	<div class="field-wrap">
     <input name="address" id="address" type="text" value="Seoul City Hall">   
-    <input type="button" id="buttonForSearch" value="검색" onclick="codeAddress()">
+    <input type="button" id="buttonForSearch" value="search" onclick="codeAddress()">
     </div>
 </div>   
 <div id="r"></div>    

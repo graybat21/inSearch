@@ -55,6 +55,8 @@ public class UserController {
 					autologin_email = cks[i].getValue();
 					logger.info(autologin_email+" 자동로그인 함 ");
 					session.setAttribute("email", autologin_email);
+					String email_info=autologin_email.substring(0,autologin_email.indexOf("@")); 
+					session.setAttribute("email_info", email_info);
 					break;
 				}			
 			}	 
@@ -85,8 +87,8 @@ public class UserController {
 					break;
 				}			
 			}	 
-		}
-		
+		}		
+		session.removeAttribute("email_info");
 		session.removeAttribute("email");
 		return "redirect:/login";
 	}
@@ -119,6 +121,8 @@ public class UserController {
 		}
 		else {
 			session.setAttribute("email", userdto.getEmail());
+			String email_info=userdto.getEmail().substring(0,userdto.getEmail().indexOf("@")); 
+			session.setAttribute("email_info", email_info);
 		}
 	
 		if ( autologin ) {			
@@ -336,6 +340,7 @@ public class UserController {
 			}	 
 		}
 		
+		session.removeAttribute("email_info");
 		session.removeAttribute("email");
 		userService.deleteUser(email);
 		

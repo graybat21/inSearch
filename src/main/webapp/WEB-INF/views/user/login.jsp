@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<style>
+		 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+      h1 { font-family: 'Nanum Pen Script', cursive; }
+	</style>
 <div class="form">
 	<h1>Insearch</h1>
 	<div class="tab-content">
@@ -16,7 +20,7 @@
 					<input type="password" required autocomplete="off" name="pw" id="pwForLogin" />
 				</div>
 				
-				<div class="field-wrap">
+				<div class="field-auto">
 					<ul class="tab-group">
 						<li class="tab active">
 							<input type="checkbox" name="autologin">&nbsp;Auto-Login</li>
@@ -57,9 +61,8 @@
 								<option value="1">man</option>
 								<option value=2>woman</option>
 							</select> 		
-					</div>					
-					<div class="field-wrap">			
-						<label class="labeloption2">Age </label> 
+						
+						<label class="labeloption2" style="margin-left:30px;">Age </label> 
 							<select name="agerange" >								
 								<option value="0">선택</option>
 								<option value="10">10대</option>
@@ -71,7 +74,7 @@
 					</div>
 				</div>
 				
-				<div class="field-wrap">
+				<div class="field-auto">
 					<ul class="tab-group">
 						<li class="tab"><a onclick="changepage(0)">Log In</a></li>
 					</ul>
@@ -93,7 +96,7 @@
 					</div>					
 				</div>
 				
-				<div class="field-wrap">
+				<div class="field-auto">
 					<ul class="tab-group">
 						<li class="tab"><a onclick="changepage(1)">Log In</a></li>
 					</ul>

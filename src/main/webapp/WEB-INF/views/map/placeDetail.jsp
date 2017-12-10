@@ -4,12 +4,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <link href="${myContextPath}/css/map_css.css" rel="stylesheet" type="text/css" />
 
-	<div id="r" class="field-wrap">
-		<ul>
-			<li>${storeVo.name}</li>
-			<li>${storeVo.address}</li>
-		</ul>
-	</div>
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<input type="hidden" name="name" id="name" value="${storeVo.name}" />
 	<input type="hidden" name="address" id="address" value="${storeVo.address}" />
@@ -18,21 +12,26 @@
 	<input type="hidden" name="store_no" id="store_no" value="${storeNo}" />	
 	<input type="hidden" name="user_no" id="user_no" value="${userNo}" />
 	<input type="hidden" id="star" value="3"/>
-	
+<div>	
+	<div id="r" style="float:left;width:90%;">
+		<h2 id="detail">${storeVo.name}</h2>
+		<h2 id="detail">${storeVo.address}</h2>
+	</div>
 	<div id="commentCount">
 
 	</div>
-	
-	<div class="field-wrap">
+</div>	
+	<div class="field-wrap" style="margin-bottom: 0px !important;">
 		<input type="text" name="comment" id="comment" placeholder="한줄평을 입력해주세요(최대 150자까지 가능)." />
 	</div>
-	<div class="field-wrap">
+	<div class="field-wrap" style="margin:10px !important;">
 		<div id="starMap"></div>
+		<button type="button" id="submitComment" name="submitComment" title="Submit Comment">review add</button>
 	</div>
 	
-	<button type="button" id="submitComment" name="submitComment" title="Submit Comment">한줄평 등록</button>
+	
 
-	<div id="block-commentList">
+	<div id="block-commentList" style="display:inline-flex;">	
 		<div class="comment-box">
 		
 		</div>
@@ -43,11 +42,10 @@
 
 <script id="template" type="text/x-handlebars-template">
 {{#each this}}
-<div class="block-comment box">
-	<p style="text-align:left"><div id="star-{{this.star}}"></div></p>
-	<p class="comment-contents">{{this.comment}}</p>
-	<p style="text-align:right">작성자 : {{trimString this.email}}****</p>
-	<p style="text-align:right">작성일 : {{prettifyDate this.createdate}}</p>
+<div class="block-comment box" style="display: flow-root;">	
+	<div style="margin-bottom:10px;">{{this.comment}}</div>
+	<div style="float:left;" id="star-{{this.star}}"></div>
+	<div id="review_box" style="float:right;"> {{trimString this.email}}**** / {{prettifyDate this.createdate}}</div>
 </div>
 {{else}}
 <div class="block-content box">
@@ -139,14 +137,15 @@ Handlebars.registerHelper('trimString', function(passedString) {
 });
 
 var printCommentCnt = function(totalCommentCnt, avgStar, target) {
-	var str = "<div class='field-wrap'>이 장소에 대하여 총 " + totalCommentCnt + "개의 한줄평이 작성되었습니다.</div>";
-	str += "<div class='field-wrap'>평균 별점 : " + avgStar + "</div>";
+	var str = "<h2 id='review' style='margin-right:20ox;'> review " + totalCommentCnt + "</h2>";
+	str += "<h2 id='review'> avg star " + avgStar+"</h2>";
 	
 	target.html(str);
 };
 
 var printNoComment = function(target) {
-	var str = "<div class='field-wrap'>이 장소에 대한 한줄평이 없습니다.</div>";
+	var str = "<h2 id='review' style='margin-right:20ox;'> review 0</h2>";
+	str += "<h2 id='review'> avg star 0 </h2>";
 	
 	target.html(str);
 };

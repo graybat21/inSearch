@@ -8,10 +8,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/WEB-INF/views/include/include-header.jspf" %>
-<div class="field-wrap" style="width:100%;">
-	<c:if test="${ email != null }">
-		로그인 유저: ${email}&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/update">회원정보 수정</a>
-	</c:if>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+</style>
+<c:if test="${ email != null }">
+<div class="header" style="width:100%;">
+	<h4>insearch</h4>
+	<div class="header_info">
+		<b style='text-decoration:underline;'>${email_info}</b>
+		<a id="header_login" href="/logout">log-out</a>
+		<a id="header_login" href="/update">info-change</a>
+	
+	</div>
 </div>
+</c:if>
