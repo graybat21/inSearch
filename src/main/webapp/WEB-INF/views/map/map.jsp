@@ -45,11 +45,11 @@ var markers = [];
 var myCity;
 var infowindow;
 var markerIcon = {
-		  url: 'http://image.flaticon.com/icons/svg/252/252025.svg',
-		  scaledSize: new google.maps.Size(80, 80),
-		  origin: new google.maps.Point(0, 0),
-		  anchor: new google.maps.Point(32,65),
-		  labelOrigin: new google.maps.Point(40,33)
+		url: 'http://image.flaticon.com/icons/svg/252/252025.svg',
+		  scaledSize: new google.maps.Size(20, 20),
+		  origin: new google.maps.Point(0,0),
+		  anchor: new google.maps.Point(10,15),
+		  labelOrigin: new google.maps.Point(10,7)
 	};
 
 $("#address").keyup(function(event) {
