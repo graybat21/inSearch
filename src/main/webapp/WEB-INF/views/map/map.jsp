@@ -182,7 +182,20 @@ function callback(results, status) {
   }
 }
 function createMarker(result){
-	var instagramUrl = 'https://api.instagram.com/v1/tags/' + result.name + '?access_token=6080463604.77b89dd.fbf12bd00d864f6da6bbafca4d3d7489';
+	console.log("구글에서 가져온 결과 : ",result);
+	//var tagName = result.name.replace(' ', '');
+	
+	var val = result.name;
+	var pattern = /[^(가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9)]/gi; 	 
+	if(pattern.test(val)){
+		val = val.replace(pattern,'');
+	}
+	var start = val.indexOf('(');
+	var end = val.indexOf(')');
+	var val2=val.substring( 0, start);
+	val2+=val.substring(end+1,val.length);
+	
+	var instagramUrl = 'https://api.instagram.com/v1/tags/' + val2 + '?access_token=6080463604.77b89dd.fbf12bd00d864f6da6bbafca4d3d7489';
  	var placeEach = document.getElementById("place_each");
  	var placeLoc = result.geometry.location;
   var latitude = placeLoc.lat();          // 위도
