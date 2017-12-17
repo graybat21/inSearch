@@ -49,7 +49,7 @@ var markerIcon = {
 		  scaledSize: new google.maps.Size(20, 20),
 		  origin: new google.maps.Point(0,0),
 		  anchor: new google.maps.Point(10,15),
-		  labelOrigin: new google.maps.Point(10,7)
+		  labelOrigin: new google.maps.Point(10,-10)
 	};
 
 $("#address").keyup(function(event) {
@@ -145,7 +145,7 @@ function moveMark(lat, lng, cat, rad) {
       strokeOpacity:0.8,
       strokeWeight:2,
       fillColor:"#0000FF",
-      fillOpacity:0.4
+      fillOpacity:0.1
   });
       
   myCity.setMap(map);
@@ -205,13 +205,14 @@ function createMarker(result){
 		  	map: map,
 		  	animation: google.maps.Animation.DROP,
 		  	position: placeLoc,
-		  	placeName: result.name,
+		  	placeName: result.name+' ('+tagCount+')',
 		  	placeId: result.place_id,
 		  	icon: markerIcon,
 		  	label: {
-		    	text: tagCount, // tagcount 출력이 안됨.
-			    color: "#eb3a44",
-			    fontSize: "16px",
+		  		text: result.name+' ('+tagCount+')', 
+			    color: "black",
+// 			    font: ""
+			    fontSize: "13px",
 			    fontWeight: "bold"
 		  	}
 		});
