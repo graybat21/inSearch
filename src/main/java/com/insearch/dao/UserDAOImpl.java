@@ -62,13 +62,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public int pwChange(String email,String pw){
-		HashMap<String, String> map = new HashMap<>();
-		map.put("email", email);
-		map.put("pw", pw);
-		
-		int result = session.update(namespace + ".pwChange", map);		
-		return result;
+	public void updatePassword(HashMap<String, Object> map) {
+		session.update(namespace + ".pwChange", map);		
 	}
 
 	@Override

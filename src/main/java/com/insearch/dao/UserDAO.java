@@ -13,7 +13,7 @@ public interface UserDAO {
 	public UserVO selectOneUser(String email);
 	public void deleteUser(String email);
 	public int getNo(String email);
-	public int pwChange(String email, String passwordSecret);        
+	public void updatePassword(HashMap<String, Object> map);        
 	public int selectUserListCnt(HashMap<String, Object> map);
 	public List<UserVO> selectUserList(HashMap<String, Object> map);
 }

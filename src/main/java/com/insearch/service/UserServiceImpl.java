@@ -63,13 +63,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public int pwChange(String email,String pw) throws Exception {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("email",email);
+	public void updatePassword(String email, String pw) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("email", email);
 		map.put("pw", pw);
 		
-		int result = userDao.pwChange(email, pw);
-		return result;
+		userDao.updatePassword(map);
 	}
 	
 	@Override

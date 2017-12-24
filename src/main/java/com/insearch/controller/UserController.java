@@ -1,5 +1,7 @@
 package com.insearch.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +26,7 @@ import com.insearch.vo.UserVO;
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
+	
 	@Autowired
 	private UserService userService;
 	
@@ -226,51 +228,48 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/pwChange_emailCheck", method = RequestMethod.GET)
-	public ModelAndView emailSend_emailCheck(String email) throws Exception {
-		logger.info("비밀번호 변경 전 이메일체크 들어옴");
-		
-		ModelAndView mav = new ModelAndView();
-		
-		UserVO loginUser = userService.selectOneUser(email);
-		
-		if ( loginUser.getEmail() == null ) {
-			mav.addObject("msg", "이메일을 잘못 입력하셨습니다.");
+	private String randPassword() {
+		Random rnd = new Random();
+
+		StringBuffer buf = new StringBuffer();
+
+		for ( int i = 0; i < 8; i++ ) {
+		    if ( rnd.nextBoolean() ) {
+		        buf.append((char)((int)(rnd.nextInt(26)) + 97));
+		    }
+		    else {
+		        buf.append((rnd.nextInt(10))); 
+		    }
 		}
 		
-		mav.setViewName("Json");
-		return mav;		
+		return buf.toString();
 	}
 	
-	@RequestMapping(value = "/pwChange", method = RequestMethod.GET)
-	public ModelAndView emailSend(String email, HttpSession session) throws Exception {
-		logger.info("비밀번호 변경페이지로 이동 ");
-		
-		ModelAndView mav = new ModelAndView();
-		
-		session.setAttribute("email_pwchange", email);
-		mav.setViewName("user/pwchange/pwchange");
-		
-		return mav;	
-	}
-	
-	@RequestMapping(value="/pwChange", method=RequestMethod.POST)
-	public ModelAndView pwdChange(HttpSession session, String pw) throws Exception {
+	@RequestMapping(value = "/pwChange", method = RequestMethod.POST)
+	public ModelAndView pwdChange(String email) throws Exception {
 		logger.info("비밀번호 변경 들어옴");
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String email = (String) session.getAttribute("email_pwchange");
-		logger.info(email + " // " + pw);
+		int emailCheck = userService.emailCheck(email);
 		
-		String passwordSecret = bcryptPasswordEncoder.encode(pw);
-		int result = userService.pwChange(email,passwordSecret);
-		
-		if ( result > 0 ) {
-			logger.info("비밀번호 변경 성공");
+		if ( emailCheck == 0 ) {
+			mav.setViewName("user/changeTemporaryPasswordError/Error");
+			return mav;
 		}
 		
-		mav.setViewName("user/login/login");
+		String changePassword = randPassword();
+		
+		logger.info(email + " // " + changePassword);
+		
+		String passwordSecret = bcryptPasswordEncoder.encode(changePassword);
+		userService.updatePassword(email, passwordSecret);
+		
+		String content = "InSearch 임시 비밀번호 -> " + changePassword;
+
+		MailSend.send_Email(email, content);
+		
+		mav.setViewName("user/changeTemporaryPasswordSuccess/PW Change Success");
 		return mav;	
 	}
 	

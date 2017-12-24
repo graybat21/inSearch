@@ -87,7 +87,7 @@
 		</div>
 		
 		<div id="forgotPwd" style="display:none;">
-			<form name="forgotPwd" action="pwChange" method="get">	
+			<form name="forgotPwd" action="pwChange" method="post">	
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />		
 				<div class="top-row">
 					<div class="field-wrap">
@@ -102,7 +102,7 @@
 					</ul>
 				</div>
 				
-				<button type="button" onclick="emailSend()" class="button button-block">Email Send</button>
+				<button type="submit" class="button button-block">Email Send</button>
 
 			</form>
 
@@ -291,28 +291,6 @@ function login_email() {
 			} 
 			else {			
 				location.href = "searchmap";
-			}
-		}
-	});
-}
-
-function emailSend(){
-	var email_check = document.forgotPwd.email.value;
-	var params = "email=" + email_check;
-	
-	$.ajax({
-		type : "GET",
-		url : "pwChange_emailCheck?"+params,
-		dataType : "json",
-		error : function(e) {
-			alert(e.responseText);
-		},
-		success : function(data) {
-			if (data.msg != "" && data.msg != null) {
-				alert(data.msg);
-			}
-			else {				
-				document.forgotPwd.submit();
 			}
 		}
 	});
